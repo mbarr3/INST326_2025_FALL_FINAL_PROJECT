@@ -1,0 +1,52 @@
+Functions:
+
+Trick functions:
+    Chase (nest dice roll, prompt to spend a treat if available, and placement functions)
+    Fetch (nest dice roll, prompt to spend a treat if available, and placement functions)
+    Gobble
+    Howl(nest deal, dice roll, prompt to spend a treat if available, and placement functions)
+    Roll Over (nest dice roll, prompt to spend a treat if available, and placement functions)
+    Trot (nest dice roll, prompt to spend a treat if available, and placement functions)
+
+Dice placement - take list of rolled dice and prompt the player to select which
+                applicable dog card they want to place it on 
+                (maybe integrate the bust calculation here since bust is only
+                possible after dice have been rolled?)
+
+Roll function
+
+Bust function - check for bust (if yard > 7)
+                if True clear all active cards and yard
+
+Trick Tracker - track which Tricks are active/unactive;
+                once only one trick is remaining active "place" a treat on that 
+                trick for the next player who selects that trick;
+                reset all tricks to active
+
+                (Don't know if it would be easiest to have each trick as a class
+                with maybe an active/inactive attribute in the init function?
+                Open to different suggestions)
+
+game setup - prompting player count;
+            creating Player class objects;
+            determining player order
+
+turn function - in the Spots file
+                order of turn actions;
+                prompting the player what they want to do with their turn
+                    (active trick list, complete a card if applicable)
+                call relevant trick or card completion function
+                    mark called trick as unactive
+                bust function
+                check if all cards are complete
+                    (if all cards completed in one turn they automatically count 
+                    as completed instead of the player having to spend their turn
+                    completing the fulfilled card)
+                Score check (once one player completes 6 cards they win)
+                
+                    
+
+                
+                    
+
+            
