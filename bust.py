@@ -7,4 +7,5 @@ def bust (player):
         total+=die
     if total > 7:
         player.yard = list()
-        player.active_cards = list()
+        for card in player.active_cards:
+            card.fulfilled_dice = list()
