@@ -3,8 +3,8 @@ yard when a player busts
 """
 def bust (player):
     total = 0
-    for dye in player.yard:
-        total+=dye
+    for die in player.yard:
+        total+=die
     if total > 7:
         player.yard = list()
         player.active_cards = list()

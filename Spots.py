@@ -33,7 +33,7 @@ class Player:
         self.completed_cards = []
         self.total_cards = ((len(self.active_cards)) + (len(self.completed_cards)))
         self.treats = 1
-        self.yard = random.randint(1,6)
+        self.yard = [random.randint(1,6)]
         # Deal initial 2 cards to the player
         for card in range(2):
             self.cards.append(Card())
@@ -53,21 +53,15 @@ class Card:
             Sets the attributes name, req_dice, and fulfilled_dice
         Returns:
         """
-        used_names = []
-        while True:
-            # TODO List of names for dog cards (NEED TO ADJUST TO ACTUALLY REMOVE USED NAMES)
-            card_names = ["Max", "Luna", "Bella", "Gus", "Teddy", "Daisy", "Bear",
-                        "Willow", "Finn", "Molly", "Cooper", "Nala", "Rocky", 
-                        "Coco", "Milo", "Cookie", "Buster", "Roxy", "Rex", "Jack",
-                        "Archie", "Missy", "Lottie", "Poppy", "Honey", "Lady", 
-                        "Ollie", "Diesel", "Duke", "Sadie"]
-            random_name = random.choice(card_names)
-            if random_name in used_names:
-                continue
-            else:
-                self.name = random_name
-                used_names.append(self.name)
-                break
+        # List of names for dog cards 
+        card_names = ["Max", "Luna", "Bella", "Gus", "Teddy", "Daisy", "Bear",
+                    "Willow", "Finn", "Molly", "Cooper", "Nala", "Rocky", 
+                    "Coco", "Milo", "Cookie", "Buster", "Roxy", "Rex", "Jack",
+                    "Archie", "Missy", "Lottie", "Poppy", "Honey", "Lady", 
+                    "Ollie", "Diesel", "Duke", "Sadie"]
+        self.name = random.choice(card_names)
+        card_names.remove(self.name)
+        
         # Assign a random number of dice between 1 and 4 to the card and then
         # assign random values between 1 and 6 to each die
         dice_num = random.randint(1,4)
