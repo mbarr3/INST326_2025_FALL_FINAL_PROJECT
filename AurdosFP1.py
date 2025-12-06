@@ -19,3 +19,7 @@ def update_card_status(required, rolled):
             return False
 
     return len(need) == 0
+
+
+
+

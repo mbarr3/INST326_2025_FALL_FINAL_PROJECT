@@ -65,13 +65,13 @@ class Card:
         # Assign a random number of dice between 1 and 4 to the card and then
         # assign random values between 1 and 6 to each die
         dice_num = random.randint(1,4)
-        self.req_dice = []
-        self.fulfilled_dice = []
+        self.req_dice = {}
         for die in range(1,dice_num+1):
-            self.req_dice.add(random.randint(1,6))
+            self.req_dice[random.randint(1,6)] = False
             
     def check_completion(self):
         """Checks if a player has a fulfilled card that can be completed"""
+        self.fulfilled.sort(key = lambda d: )
         if self.fulfilled == self.required:
             True
         else:
@@ -102,7 +102,7 @@ def game_setup():
     # Determine first player by the player with the highest buried die
         # Each player gets a die rolled and buried in their yard when instantiated
         # For the sake of the program establish turn order based on descending buried dice amounts
-    player_list.sort(reverse = True, key = lambda p: p.yard)
+    player_list.sort(reverse = True, key = lambda)
     
     return player_list
 
@@ -137,7 +137,7 @@ def turn(player_list):
             # TODO if player has a card that CAN be completed, prompt if the player would like to do so
             for card in player.active_cards:
                 if Card.check_completion(card):
-                    
+                    input = (f"Would you like to complete your fulfilled cards?")
                     break
             # prompt player to select their turn action
             trick = input(f"\nWhat action would you like to take this turn:\n") 
