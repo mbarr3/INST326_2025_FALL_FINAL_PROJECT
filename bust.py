@@ -9,3 +9,5 @@ def bust (player):
         player.yard = list()
         for card in player.active_cards:
             card.fulfilled_dice = list()
+        return True # Add method to turn order to end turn
+   
