@@ -1,6 +1,6 @@
 Functions:
 
-Trick functions:
+Trick functions: (each trick should have a means of tracking if it has a treat on it for the next player that selects it)
     Chase (nest dice roll, prompt to spend a treat if available, and placement functions)
     Fetch (nest dice roll, prompt to spend a treat if available, and placement functions)
     Gobble

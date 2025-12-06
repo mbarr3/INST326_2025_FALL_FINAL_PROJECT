@@ -1,15 +1,31 @@
 # Create rough outline of the program
 import random
+from collections import Counter
 
 class Player:
     """A player in the game that also tracks their current dog cards,treats, 
     and score.
+    
+    Attributes:
+        name (str): Name of the player
+        active_cards (list of Card class objects): List of Card class objects
+                that represent the player's active cards
+        completed_cards (list of Card class objects): List of Card class objects
+                that represent the player's completed cards
+        total_cards (int): Expression that calculates the total number of cards
+                the player has (cannot exceed 6)
+        treats (int): tracks how many treats the player has
+        yard (int): tracks the value in the player's yard for bust purposes
     """
     def __init__(self, name):
         """
         Args:
+            name (str): Player's input name
         Side effects:
-        Returns:
+            Sets attributes name, active_cards, completed_cards, total_cards,
+            treats, and yard.
+            Also initiates two Card class objects and appends them to the Player
+            object's active_cards list
         """
         self.name = name
         # List of Card class objects
@@ -24,16 +40,22 @@ class Player:
     
 class Card:
     """Represents a dog card including the card's name and dice requirements
+    
+    Attributes:
+        name (str): name of the dog card
+        req_dice (set of ints): set of ints representing the values of the dice
+            on the dog card that must be fulfilled
+        fulfilled_dice (set of ints)
     """
     def __init__(self):
         """
-        Args:
         Side effects:
+            Sets the attributes name, req_dice, and fulfilled_dice
         Returns:
         """
         used_names = []
         while True:
-            # List of names for dog cards
+            # TODO List of names for dog cards (NEED TO ADJUST TO ACTUALLY REMOVE USED NAMES)
             card_names = ["Max", "Luna", "Bella", "Gus", "Teddy", "Daisy", "Bear",
                         "Willow", "Finn", "Molly", "Cooper", "Nala", "Rocky", 
                         "Coco", "Milo", "Cookie", "Buster", "Roxy", "Rex", "Jack",
@@ -49,16 +71,23 @@ class Card:
         # Assign a random number of dice between 1 and 4 to the card and then
         # assign random values between 1 and 6 to each die
         dice_num = random.randint(1,4)
-        req_dice = set()
-        fulfilled_dice = set()
+        self.req_dice = []
+        self.fulfilled_dice = []
         for die in range(1,dice_num+1):
-            req_dice.add(random.randint(1,6))
+            self.req_dice.add(random.randint(1,6))
+            
+    def check_completion(self):
+        """Checks if a player has a fulfilled card that can be completed"""
+        if self.fulfilled == self.required:
+            True
+        else:
+            False
 
 
 def game_setup():
-    """
-    Args:
-    Side effects:
+    """Initial set up for the game, establishing number and names of players,
+    and turn order
+    Side effects: creates Player class objects
     Returns:
     """
     player_list = []
@@ -73,28 +102,71 @@ def game_setup():
         # Initiate Player class for each player 
         for player in range(1, (player_count+1)):
             name = input("Please, enter your name:\t")
-            player_list.append([Player(name), name.yard])            
-        # Determine first player by the player with the highest buried die
-            # Each player gets a die rolled and buried in their yard when instantiated
-            # For the sake of the program establish turn order based on descending buried dice amounts
-        player_list.sort(reverse = True, key = lambda player: player[1])
-        
-active_tricks = ['Chase', ]
-# turn loop
-def turn():
+            player_list.append([Player(name)])
+        break   
+           
+    # Determine first player by the player with the highest buried die
+        # Each player gets a die rolled and buried in their yard when instantiated
+        # For the sake of the program establish turn order based on descending buried dice amounts
+    player_list.sort(reverse = True, key = lambda p: p.yard)
     
-    # prompt player to pick a trick card
-        # call the trick function (# deactivate function until it is refreshed)
-            # allow the player to place dice if necessary
-            # prompt player to spend a treat if applicable (maybe all 
+    return player_list
+
+    
+        
+# Descriptions of the tricks for the players when choosing a trick
+# TODO find best way to present the descriptions to the player
+trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many times as you want but each time roll 1 more die than you just did (2, 3, 4...)", 
+                      'Fetch': "Roll 8 dice.\nChoose a number you rolled, and place or bury all dice of that number.\nDiscard the rest.", 
+                      'Gobble': "Take 7 treats.\nThen return 1 treat for each spot in your highest unfilled space.", 
+                      'Howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack.\nThen roll 1 die.", 
+                      'Roll Over': "Roll all your buried dice and then place or rebury them.\nThen you may roll 2 die.", 
+                      'Trot': "You may move 1 die on your dog cards to any other space, changing the number if needed.\nThen roll 2 dice."
+                      }
+
+# TODO For tracking active/inactive tricks
+active_tricks = ['Chase', 'Fetch', 'Gobble', 'Howl', 'Roll Over', 'Trot']
+inactive_tricks = []
+
+# turn loop
+def turn(player_list):
+    """
+    Args:
+    Side effects:
+    Returns:
+    """
+    while True: 
+        for player in player_list:
+            # Print active tricks to the terminal
+            for trick in active_tricks:
+                print(f"• {trick}\n")
+            # TODO if player has a card that CAN be completed, prompt if the player would like to do so
+            for card in player.active_cards:
+                if Card.check_completion(card):
+                    
+                    break
+            # prompt player to select their turn action
+            trick = input(f"\nWhat action would you like to take this turn:\n") 
+        # TODO call the trick function (# deactivate function until it is refreshed)
+            # TODO allow the player to place dice if necessary
+            # TODO prompt player to spend a treat if applicable (maybe all 
                 # functions that involve rolling are while loops and at the 
                 # end players are prompted to spend a treat and this decides
                 # if the while loop restarts or breaks
                 # check the players yard to see if they bust
                     # call the bust function if necessary
-                # check if all the players dog cards are completed 
-                    # (if all of a players dog cards are filled in one turn
-                    # they are automatically completed and locked)
+            # check if all the players dog cards are completed
+            fulfilled_count = 0
+            for card in player.active_cards:
+                if Card.check_completion(card.fullfilled_dice, card.req_dice):
+                    fulfilled_count+=1
+            if fulfilled_count == len(player.active_cards):
+                # (if all of a players dog cards are filled in one turn
+                # they are automatically completed and locked)
+                update_card_status(player.active_cards)
+                print("Congrats! You fulfilled all your dog cards this turn!"\
+                    " Your dog cards have been automatically marked as completed!")
+                
         
         # Score check at the end of every player turn to check if any player
             # has completed the required 6 dog cards to win
