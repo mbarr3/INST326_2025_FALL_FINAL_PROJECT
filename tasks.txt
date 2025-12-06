@@ -18,7 +18,7 @@ Roll function
 Bust function - check for bust (if yard > 7)
                 if True clear all active cards and yard
 
-Trick Tracker - track which Tricks are active/unactive;
+Trick Tracker - track which Tricks are active/inactive;
                 once only one trick is remaining active "place" a treat on that 
                 trick for the next player who selects that trick;
                 reset all tricks to active
@@ -36,7 +36,7 @@ turn function - in the Spots file
                 prompting the player what they want to do with their turn
                     (active trick list, complete a card if applicable)
                 call relevant trick or card completion function
-                    mark called trick as unactive
+                    mark called trick as inactive
                 bust function
                 check if all cards are complete
                     (if all cards completed in one turn they automatically count 
