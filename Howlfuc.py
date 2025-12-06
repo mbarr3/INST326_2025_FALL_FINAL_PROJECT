@@ -1,15 +1,6 @@
 import random
 
 
-def deal(player):
-    """
-    A method of the card class to be implemented in the future, It will create a
-    new Card class object and assign that to the player's list of cards
-    """
-    player.active_cards.append(Card())
-
-
-
 def howl(player):
     """
 Arguments:
@@ -23,6 +14,6 @@ Returns:
     None
     """
     if player.total_cards < 6:
-        new_card = deal()
+        new_card = player.active_cards.append(Card())
         
-    random_roll()
+    random_roll(1)

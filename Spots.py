@@ -37,6 +37,7 @@ class Player:
         # Deal initial 2 cards to the player
         for card in range(2):
             self.cards.append(Card())
+            
     
 class Card:
     """Represents a dog card including the card's name and dice requirements
@@ -71,13 +72,20 @@ class Card:
             
     def check_completion(self):
         """Checks if a player has a fulfilled card that can be completed"""
-        self.fulfilled.sort(key = lambda d: )
-        if self.fulfilled == self.required:
+        if False not in self.req_dice.values():
             True
         else:
             False
 
 
+def dice_placement(player, dice_list):
+    placement_dict = {}
+    for die in dice_list:
+        placement_dict[die] = None
+    
+            
+            
+            
 def game_setup():
     """Initial set up for the game, establishing number and names of players,
     and turn order
@@ -152,7 +160,7 @@ def turn(player_list):
             # check if all the players dog cards are completed
             fulfilled_count = 0
             for card in player.active_cards:
-                if Card.check_completion(card.fullfilled_dice, card.req_dice):
+                if Card.check_completion(card):
                     fulfilled_count+=1
             if fulfilled_count == len(player.active_cards):
                 # (if all of a players dog cards are filled in one turn
