@@ -12,6 +12,7 @@ Dice placement - take list of rolled dice and prompt the player to select which
                 applicable dog card they want to place it on 
                 (maybe integrate the bust calculation here since bust is only
                 possible after dice have been rolled?)
+                Any remaining dice must be placed in the player's yard
 
 Roll function
 
