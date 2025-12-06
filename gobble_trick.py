@@ -14,6 +14,7 @@ def gobble_trick(player):
     for card in player.active_cards:
         for dice in card.req_dice:
             if not card.req_dice[dice]:
-                blank_max = dice 
+                if blank_max < dice:
+                    blank_max = dice
     player.treats = treat - blank_max
             
