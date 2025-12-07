@@ -161,7 +161,7 @@ def turn(player_list):
                 # (if all of a players dog cards are filled in one turn
                 # they are automatically completed and locked)
                 for card in player.active_cards:
-                    if not Card.check_completion(card): # TODO Trying to make it so if the loop ever 
+                    if Card.check_completion(card) == False: # TODO Trying to make it so if the loop ever 
                         #returns a False value the loop terminates and concludes the cards are not all complete
                         pass
                     else: # if all cards are fulfilled
