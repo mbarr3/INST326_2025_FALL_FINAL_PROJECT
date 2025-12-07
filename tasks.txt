@@ -60,3 +60,10 @@ if __name__ == "__main__":
                     
 
             
+NOTES:
+- all functions that involve rolling should integrate prompting the player if they
+    want to spend a treat if they have one
+    * while loop for calling the roll function would make this easier in the 
+        event that the player has multiple treats
+
+- bust function is integrated into the dice placement function so it only has to be called once

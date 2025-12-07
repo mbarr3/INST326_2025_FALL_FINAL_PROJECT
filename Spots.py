@@ -140,7 +140,7 @@ def turn(player_list):
             # Print active tricks to the terminal
             for trick in active_tricks:
                 print(f"• {trick}\n")
-            # TODO if player has a card that CAN be completed, prompt if the player would like to do so
+            # TODO before trick selection if player has a card that CAN be completed, prompt if the player would like to do so
             for card in player.active_cards:
                 if Card.check_completion(card):
                     input = (f"Would you like to complete your fulfilled cards?")
@@ -148,7 +148,6 @@ def turn(player_list):
             # prompt player to select their turn action
             trick = input(f"\nWhat action would you like to take this turn:\n") 
         # TODO call the trick function (# deactivate function until it is refreshed)
-            # TODO allow the player to place dice if necessary
             # TODO prompt player to spend a treat if applicable (maybe all 
                 # functions that involve rolling are while loops and at the 
                 # end players are prompted to spend a treat and this decides
