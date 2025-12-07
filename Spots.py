@@ -78,6 +78,7 @@ class Card:
             True
         else:
             False
+    
     def __str__(self):
         back = []
         handoff = ""
