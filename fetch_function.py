@@ -1,19 +1,21 @@
 import random_roll
-    
+import dice_placement
 
-def fetch():
+def fetch(player):
     """Function to represent the "Fetch" action in the Spots game. Fetch calls the 
-    future dice_roll function with an arg of 8 so it returns a list of 8 rolled dice.
+    random_roll function with an int arg so it returns a list of int rolled dice.
     Prompts the player to select a number from the rolled dice and validates that
-    input.
+    input. Creates a list of all the die with the selected value. Passes that list
+    to the dice placement function. 
+    
+    Args:
+        player (Player obj): a Player class object with access to Player
+            attributes for the dice_placement function
 
     Side-effects:
-        Saves the list returned by the dice_roll function to a variable
+        Saves the list returned by the random_roll function to a variable
         Creates a chosen_num variable to store the player's input chosen number
-    
-    Returns:
-        A list of the rolled die that are the number input by the player
-        
+
     Author: Mackenzie Barrett
     Technique: List Comprehension
     """
@@ -32,6 +34,6 @@ def fetch():
         else:
             print(f"{chosen_num} is not present in the rolled dice")
             continue
-        
-    return [die for die in rolled if die == chosen_num]
-            
+    
+    dice_placement(player, [die for die in rolled if die == chosen_num])
+    

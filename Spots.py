@@ -1,6 +1,6 @@
 # Create rough outline of the program
 import random
-from collections import Counter
+import bust
 
 class Player:
     """A player in the game that also tracks their current dog cards,treats, 
@@ -44,9 +44,8 @@ class Card:
     
     Attributes:
         name (str): name of the dog card
-        req_dice (set of ints): set of ints representing the values of the dice
-            on the dog card that must be fulfilled
-        fulfilled_dice (set of ints)
+        req_dice (dict): key is a die requirement and the value is a boolean of 
+                        if it is fulfilled or not
     """
     def __init__(self):
         """
@@ -144,24 +143,31 @@ def turn(player_list):
             # prompt player to select their turn action
             trick = input(f"\nWhat action would you like to take this turn:\n") 
         # TODO call the trick function (# deactivate function until it is refreshed)
-            # TODO allow the player to place dice if necessary
+            
             # TODO prompt player to spend a treat if applicable (maybe all 
                 # functions that involve rolling are while loops and at the 
                 # end players are prompted to spend a treat and this decides
                 # if the while loop restarts or breaks
-                # check the players yard to see if they bust
-                    # call the bust function if necessary
-            # check if all the players dog cards are completed
-            fulfilled_count = 0
-            for card in player.active_cards:
-                if Card.check_completion(card):
-                    fulfilled_count+=1
-            if fulfilled_count == len(player.active_cards):
-                # (if all of a players dog cards are filled in one turn
-                # they are automatically completed and locked)
-                update_card_status(player.active_cards)
-                print("Congrats! You fulfilled all your dog cards this turn!"\
-                    " Your dog cards have been automatically marked as completed!")
+        # TODO allow the player to place dice if necessary
+        
+        # check the players yard to see if they bust
+        if bust(player) == True:
+            print(f"Oh no! Your yard has {player.yard} spots in it! You have" \
+                f" busted! :( All progress has been cleared from your active"\
+                f" cards and your yard has been emptied.")
+            break
+                    
+        # check if all the players dog cards are completed
+        fulfilled_count = 0
+        for card in player.active_cards:
+            if Card.check_completion(card):
+                fulfilled_count+=1
+        if fulfilled_count == len(player.active_cards):
+            # (if all of a players dog cards are filled in one turn
+            # they are automatically completed and locked)
+            update_card_status(player.active_cards)
+            print("Congrats! You fulfilled all your dog cards this turn!"\
+                " Your dog cards have been automatically marked as completed!")
                 
         
         # Score check at the end of every player turn to check if any player
