@@ -114,7 +114,7 @@ def game_setup():
     # Determine first player by the player with the highest buried die
         # Each player gets a die rolled and buried in their yard when instantiated
         # For the sake of the program establish turn order based on descending buried dice amounts
-    player_list.sort(reverse = True, key = lambda)
+    player_list.sort(reverse = True)
     
     return player_list
 
@@ -240,3 +240,8 @@ def turn(player_list):
                 print(f"\n{'='*50}")
                 print(f"GAME OVER! {player.name} wins with 6 completed cards!")
                 print(f"{'='*50}")
+                
+                
+def main():
+    player_list = game_setup()
+    turn(player_list)
