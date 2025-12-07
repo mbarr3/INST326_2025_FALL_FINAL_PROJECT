@@ -1,7 +1,7 @@
-import random
 import random_roll
+from Spots import Player, Card
 
-def howl(player):
+def howl():
     """
 Arguments:
     Player class object
@@ -13,7 +13,6 @@ Side-effects:
 Returns:
     None
     """
-    if player.total_cards < 6:
-        new_card = player.active_cards.append(Card())
-        
+    if Player.active_cards < 6:
+        Player.active_cards.append(Card())
     random_roll(1)

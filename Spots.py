@@ -2,6 +2,9 @@
 import random
 from collections import Counter
 
+from trick_tracker import active_tricks, inactive_tricks, display_tricks, select_trick, use_trick, refresh_tricks
+
+
 class Player:
     """A player in the game that also tracks their current dog cards,treats, 
     and score.
@@ -138,45 +141,104 @@ trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many ti
 
 
 
+
+
 # turn loop
 def turn(player_list):
-    """
+    """Main game loop that handles player turns
+    
     Args:
+        player_list (list): List of Player objects in turn order
     Side effects:
+        Modifies player attributes, prints to console, manages game state
     Returns:
+        None (exits when a player wins)
     """
     while True: 
         for player in player_list:
+            print(f"\n--- {player.name}'s Turn ---")
+            print(f"Treats: {player.treats}")
+            print(f"Yard: {player.yard}")
+            
             # Print active tricks to the terminal
+            print("\nAvailable tricks:")
             for trick in active_tricks:
-                print(f"• {trick}\n")
-            # TODO if player has a card that CAN be completed, prompt if the player would like to do so
+                print(f"• {trick}")
+            
+            # Check if player has a card that CAN be completed
+            completable_cards = []
             for card in player.active_cards:
-                if Card.check_completion(card):
-                    input = (f"Would you like to complete your fulfilled cards?")
-                    break
-            # prompt player to select their turn action
-            trick = input(f"\nWhat action would you like to take this turn:\n") 
-        # TODO call the trick function (# deactivate function until it is refreshed)
-            # TODO allow the player to place dice if necessary
-            # TODO prompt player to spend a treat if applicable (maybe all 
-                # functions that involve rolling are while loops and at the 
-                # end players are prompted to spend a treat and this decides
-                # if the while loop restarts or breaks
-                # check the players yard to see if they bust
-                    # call the bust function if necessary
-            # check if all the players dog cards are completed
+                if card.check_completion():
+                    completable_cards.append(card)
+            
+            if completable_cards:
+                response = input(f"\nYou have {len(completable_cards)} card(s) that can be completed. Complete them now? (yes/no): ")
+                if response.lower() in ['yes', 'y']:
+                    for card in completable_cards:
+                        player.completed_cards.append(card)
+                        player.active_cards.remove(card)
+                        print(f"Completed card: {card.name}")
+                    refresh_tricks()
+            
+            # Display available tricks
+            print("\nAvailable tricks:")
+            for trick in active_tricks:
+                print(f"• {trick}")
+
+            # Prompt player to select their turn action
+            trick = input(f"\nWhat action would you like to take this turn: ")
+            
+            # Call the trick function and deactivate it
+            if trick in active_tricks:
+                use_trick(trick)
+                
+                # Execute trick based on which one was chosen
+                if trick == 'Chase':
+                    chase(player)
+                elif trick == 'Fetch':
+                    fetch(player)
+                elif trick == 'Gobble':
+                    gobble(player)
+                elif trick == 'Howl':
+                    howl(player)
+                elif trick == 'Roll Over':
+                    roll_over(player)
+                elif trick == 'Trot':
+                    trot(player)
+                
+                # Check if all tricks used, refresh if needed
+                if len(active_tricks) == 0:
+                    refresh_tricks()
+            else:
+                print("Invalid trick selection. Turn skipped.")
+                continue
+            
+            # Check the player's yard to see if they bust
+            yard_total = sum(player.yard)
+            if yard_total > 10:
+                print(f"\nBUST! Your yard total is {yard_total} (over 10)")
+                bust(player)
+            
+            # Check if all the player's dog cards are completed
             fulfilled_count = 0
             for card in player.active_cards:
-                if Card.check_completion(card):
-                    fulfilled_count+=1
-            if fulfilled_count == len(player.active_cards):
-                # (if all of a players dog cards are filled in one turn
-                # they are automatically completed and locked)
-                update_card_status(player.active_cards)
-                print("Congrats! You fulfilled all your dog cards this turn!"\
-                    " Your dog cards have been automatically marked as completed!")
-                
+                if card.check_completion():
+                    fulfilled_count += 1
+                    
+            if fulfilled_count == len(player.active_cards) and len(player.active_cards) > 0:
+                # If all of a player's dog cards are filled in one turn
+                # they are automatically completed and locked
+                for card in player.active_cards[:]:
+                    player.completed_cards.append(card)
+                    player.active_cards.remove(card)
+                print("\nCongrats! You fulfilled all your dog cards this turn!")
+                print("Your dog cards have been automatically marked as completed!")
+                refresh_tricks()
         
-        # Score check at the end of every player turn to check if any player
-            # has completed the required 6 dog cards to win
+        # Score check at the end of every round to see if any player won
+        for player in player_list:
+            if len(player.completed_cards) >= 6:
+                print(f"\n{'='*50}")
+                print(f"GAME OVER! {player.name} wins with 6 completed cards!")
+                print(f"{'='*50}")
+                return
