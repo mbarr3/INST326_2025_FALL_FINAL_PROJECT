@@ -56,20 +56,20 @@ def dice_placement(player, dice_list):
     for die in prompt_list:
         while True:
             print(f"\nYour card options are:\n")
-            for value in placement_dict[die]:
-                print(f"{}")
+            counter = 1
+            for card in placement_dict[die]:
+                print(f"{counter}. {card}")
+                counter+=1
             # TODO Need to figure out how Card class obj printing will work and 
             # how to translate player input to card obj name for the next step
-            selection = input(f"\n\nEnter the name of the cards above which one would you like"\
-                f" to place the {die} on?\t")
-            # TODO Validate input (unsure yet how )
-            if selection not in placement_dict[die]:
-                print(f"\n{selection} is not one of the available cards listed above")
-                continue
-            else:
-                selection.req_dice[die] = True
-                break
-        
+            selection = input(f"\n\nEnter the name of the card above which "\
+                f"one would you like to place the {die} on?\t")
+            # TODO Validate input
+            # Mark die spot on the chosen card as fulfilled
+            for card in placement_dict[die]:
+                if card.name == (selection):
+                    card.req_dice[die] = True
+                        
     # Add bury_list to the player's yard
     for die in bury_dice:
         player.yard.append(die)
