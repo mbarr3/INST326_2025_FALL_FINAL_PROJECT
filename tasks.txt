@@ -52,7 +52,13 @@ turn function - in the Spots file
                 Score check (once one player completes 6 cards they win)
                 
 Magic Methods: (for each class)
-    __str__()
+    __str__() 
+        Specifically for the Card class this needs to print in a way that makes
+            it easy for the player to understand their card's progress
+
+            The card obj is printed in the dice_placement function to help the 
+                player choose which card they want to place a die on
+
     __repr__()
 
 
@@ -65,5 +71,9 @@ NOTES:
     want to spend a treat if they have one
     * while loop for calling the roll function would make this easier in the 
         event that the player has multiple treats
+
+- all trick functions need some sort of tracker variable for if they have a treat
+    or not and when called if they have a treat they need to add a treat to the 
+    player obj that called the function
 
 - bust function is integrated into the dice placement function so it only has to be called once
