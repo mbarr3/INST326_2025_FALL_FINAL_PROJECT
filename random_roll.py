@@ -1,3 +1,5 @@
+import random
+
 def roll(rolls):
     """ 
     Summary: 
@@ -10,7 +12,6 @@ def roll(rolls):
     Returns:
         List: List with all the randomly rolled dice values in each index
     """
-    import random
     back = list()
     count = 0
     while count < int(rolls):

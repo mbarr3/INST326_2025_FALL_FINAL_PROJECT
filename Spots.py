@@ -72,10 +72,8 @@ class Card:
             
     def check_completion(self):
         """Checks if a player has a fulfilled card that can be completed"""
-        # If the card is complete returns true
         if False not in self.req_dice.values():
             True
-        # If the card is not complete returns false
         else:
             False
 
@@ -124,9 +122,7 @@ trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many ti
                       'Trot': "You may move 1 die on your dog cards to any other space, changing the number if needed.\nThen roll 2 dice."
                       }
 
-# TODO For tracking active/inactive tricks
-active_tricks = ['Chase', 'Fetch', 'Gobble', 'Howl', 'Roll Over', 'Trot']
-inactive_tricks = []
+
 
 # turn loop
 def turn(player_list):
@@ -140,7 +136,7 @@ def turn(player_list):
             # Print active tricks to the terminal
             for trick in active_tricks:
                 print(f"• {trick}\n")
-            # TODO before trick selection if player has a card that CAN be completed, prompt if the player would like to do so
+            # TODO if player has a card that CAN be completed, prompt if the player would like to do so
             for card in player.active_cards:
                 if Card.check_completion(card):
                     input = (f"Would you like to complete your fulfilled cards?")
@@ -148,10 +144,13 @@ def turn(player_list):
             # prompt player to select their turn action
             trick = input(f"\nWhat action would you like to take this turn:\n") 
         # TODO call the trick function (# deactivate function until it is refreshed)
+            # TODO allow the player to place dice if necessary
             # TODO prompt player to spend a treat if applicable (maybe all 
                 # functions that involve rolling are while loops and at the 
                 # end players are prompted to spend a treat and this decides
                 # if the while loop restarts or breaks
+                # check the players yard to see if they bust
+                    # call the bust function if necessary
             # check if all the players dog cards are completed
             fulfilled_count = 0
             for card in player.active_cards:
@@ -160,15 +159,9 @@ def turn(player_list):
             if fulfilled_count == len(player.active_cards):
                 # (if all of a players dog cards are filled in one turn
                 # they are automatically completed and locked)
-                for card in player.active_cards:
-                    if Card.check_completion(card) == False: # TODO Trying to make it so if the loop ever 
-                        #returns a False value the loop terminates and concludes the cards are not all complete
-                        pass
-                    else: # if all cards are fulfilled
-                        # Moves all player's active cards to the completed cards list
-                        # If player has less than 6 cards creates as many new cards as were completed unless the player hits 6 cards
-                        print("Congrats! You fulfilled all your dog cards this turn!"\
-                        " Your dog cards have been automatically marked as completed!")
+                update_card_status(player.active_cards)
+                print("Congrats! You fulfilled all your dog cards this turn!"\
+                    " Your dog cards have been automatically marked as completed!")
                 
         
         # Score check at the end of every player turn to check if any player
