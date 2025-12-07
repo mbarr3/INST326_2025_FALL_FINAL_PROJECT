@@ -10,9 +10,8 @@ Trick functions: (each trick should have a means of tracking if it has a treat o
 
 Dice placement - take list of rolled dice and prompt the player to select which
                 applicable dog card they want to place it on 
-                (maybe integrate the bust calculation here since bust is only
-                possible after dice have been rolled?)
                 Any remaining dice must be placed in the player's yard
+                bust function
 
 Roll function
 
@@ -42,7 +41,6 @@ turn function - in the Spots file
                     (active trick list, complete a card if applicable)
                 call relevant trick or card completion function
                     mark called trick as inactive
-                bust function
                 check if all cards are complete
                     (if all cards completed in one turn they automatically count 
                     as completed instead of the player having to spend their turn
@@ -53,7 +51,6 @@ turn function - in the Spots file
                 
 Magic Methods: (for each class)
     __str__()
-    __repr__()
 
 
 if __name__ == "__main__":             
