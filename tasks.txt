@@ -28,6 +28,10 @@ Trick Tracker - track which Tricks are active/inactive;
                 with maybe an active/inactive attribute in the init function?
                 Open to different suggestions)
 
+complete_card function - moves the fulfilled card from the active card list to
+                        the completed card list 
+                        deals a new card to the player if they have less than 6 cards
+
 game setup - prompting player count;
             creating Player class objects;
             determining player order
@@ -47,9 +51,12 @@ turn function - in the Spots file
                         possible duplicate values (set intersection would not work)
                 Score check (once one player completes 6 cards they win)
                 
-                    
+Magic Methods: (for each class)
+    __str__()
+    __repr__()
 
-                
+
+if __name__ == "__main__":             
                     
 
             

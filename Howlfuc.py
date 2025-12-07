@@ -1,5 +1,5 @@
 import random
-
+import random_roll
 
 def howl(player):
     """

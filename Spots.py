@@ -78,10 +78,6 @@ class Card:
             False
 
 
-def dice_placement(player, dice_list):
-    placement_dict = {}
-    for die in dice_list:
-        placement_dict[die] = None
     
             
             
@@ -126,9 +122,7 @@ trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many ti
                       'Trot': "You may move 1 die on your dog cards to any other space, changing the number if needed.\nThen roll 2 dice."
                       }
 
-# TODO For tracking active/inactive tricks
-active_tricks = ['Chase', 'Fetch', 'Gobble', 'Howl', 'Roll Over', 'Trot']
-inactive_tricks = []
+
 
 # turn loop
 def turn(player_list):

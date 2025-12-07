@@ -1,15 +1,4 @@
-
-
-def dice_roll(num_dice):
-    """Temporary place holder function for the dice_roll function
-    
-    Args:
-        num_dice (int): int of dice to roll
-    
-    Returns:
-        predetermined list of ints
-    """
-    return [1,2,5,1,4,1,6,3]
+import random_roll
     
 
 def fetch():
@@ -24,10 +13,13 @@ def fetch():
     
     Returns:
         A list of the rolled die that are the number input by the player
+        
+    Author: Mackenzie Barrett
+    Technique: List Comprehension
     """
     # Call temporary dice_roll function and save returned list to a variable
-    rolled = dice_roll(8)
-    print(rolled)
+    rolled = random_roll(8)
+    print(f"Rolled dice: {rolled}")
     # Prompt and validate user input
     while True:
         chosen_num = input("Choose one of the numbers present in the rolled dice" 
