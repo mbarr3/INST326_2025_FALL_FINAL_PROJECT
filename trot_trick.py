@@ -25,8 +25,5 @@ def trot(Player,Selected_die):
         return
     
     old_card.req_dice[old_place] = None
-    dp.dice_placement(Player, [Selected_die])
-    
-    
-            
+    dp.dice_placement(Player, [Selected_die])  
     rr.roll(2)
