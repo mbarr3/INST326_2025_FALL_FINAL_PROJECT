@@ -136,6 +136,20 @@ trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many ti
 
 # turn loop
 def turn(player_list):
+    
+    active_tricks = [['Chase', 'Fetch', 'Gobble', 'Howl', 'Roll Over', 'Trot']]
+    
+    dead_tricks = []
+    
+    trick_descriptions = {
+    'Chase': "Roll 1 die. You may repeat this trick as many times as you want but each time roll 1 more die than you just did (2, 3, 4...)", 
+    'Fetch': "Roll 8 dice. Choose a number you rolled, and place or bury all dice of that number.Discard the rest.", 
+    'Gobble': "Take 7 treats. Then return 1 treat for each spot in your highest unfilled space.", 
+    'Howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack.Then roll 1 die.", 
+    'Roll Over': "Roll all your buried dice and then place or rebury them. Then you may roll 2 dice.", 
+    'Trot': "You may move 1 die on your dog cards to any other space, changing the number if needed. Then roll 2 dice."
+}
+
     """Main game loop that handles player turns
     
     Args:
@@ -145,22 +159,19 @@ def turn(player_list):
     Returns:
         None (exits when a player wins)
     """
-    while True: 
+    while True:
         for player in player_list:
             print(f"\n--- {player.name}'s Turn ---")
             print(f"Treats: {player.treats}")
             print(f"Yard: {player.yard}")
             
-            # Print active tricks to the terminal
-            print("\nAvailable tricks:")
-            for trick in active_tricks:
-                print(f"• {trick}")
             
             # Check if player has a card that CAN be completed
             completable_cards = []
             for card in player.active_cards:
-                if Card.check_completion():
+                if Card.check_completion(card):
                     completable_cards.append(card)
+                    
             
             if len(completable_cards) > 0:
                 response = input(f"\nYou have {len(completable_cards)} card(s) that can be completed. Complete them now? (yes/no): ")
@@ -169,46 +180,46 @@ def turn(player_list):
                         player.completed_cards.append(card)
                         player.active_cards.remove(card)
                         print(f"Completed card: {card.name}")
-                    refresh_tricks()
+                    
             
             # Display available tricks
-            print("\nAvailable tricks:")
-            for trick in active_tricks:
-                print(f"• {trick}")
+            print("\n" + "="*50)
+            for i in range(len(active_tricks)):
+                trick = active_tricks[i]
+                print(f"{i+1}. {trick}: {trick_descriptions[trick]}")
+                print("="*50)        
 
             # Prompt player to select their turn action
-            trick = input(f"\nWhat action would you like to take this turn: ")
+            while True:
+                trick = input(f"\nWhat action would you like to take this turn: ")
+                if trick in active_tricks:
+                     idx = active_tricks.index(trick) 
+                     dead_tricks.append(active_tricks[idx])
+                     active_tricks.remove(trick)
+
+                     break
+                else:
+                    print("Invalid selection select an ACTIVE TRICK!")
             
             # Call the trick function and deactivate it
             if trick in active_tricks:
-                use_trick(trick)
-                
                 # Execute trick based on which one was chosen
                 if trick == 'Chase':
-                    chase(player)
+                    chase_trick(player)
                 elif trick == 'Fetch':
-                    fetch(player)
+                    fetch_function(player)
                 elif trick == 'Gobble':
-                    gobble(player)
+                    gobble_trick(player)
                 elif trick == 'Howl':
-                    howl(player)
+                    Howlfuc(player)
                 elif trick == 'Roll Over':
                     roll_over(player)
                 elif trick == 'Trot':
-                    trot(player)
+                    trot_trick(player)
                 
                 # Check if all tricks used, refresh if needed
                 if len(active_tricks) == 1:
                     refresh_tricks()
-            else:
-                print("Invalid trick selection. Turn skipped.")
-                continue
-            
-            # Check the player's yard to see if they bust
-            yard_total = sum(player.yard)
-            if yard_total > 10:
-                print(f"\nBUST! Your yard total is {yard_total} (over 10)")
-                bust(player)
             
             # Check if all the player's dog cards are completed
             fulfilled_count = 0
@@ -224,12 +235,10 @@ def turn(player_list):
                     player.active_cards.remove(card)
                 print("\nCongrats! You fulfilled all your dog cards this turn!")
                 print("Your dog cards have been automatically marked as completed!")
-                refresh_tricks()
-        
+    
         # Score check at the end of every round to see if any player won
         for player in player_list:
-            if len(player.completed_cards) >= 6:
+            if len(player.completed_cards) == 6:
                 print(f"\n{'='*50}")
                 print(f"GAME OVER! {player.name} wins with 6 completed cards!")
                 print(f"{'='*50}")
-                return
