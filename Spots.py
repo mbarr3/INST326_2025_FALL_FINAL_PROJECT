@@ -76,6 +76,20 @@ class Card:
             True
         else:
             False
+    def __str__(self):
+        back = []
+        handoff = ""
+        for key in self.req_dice:
+            if self.req_dice [key]:
+                back.append(str(key) + "\u2705"+"|")
+            else:
+                back.append (str(key)+"|")
+        for entry in back:
+            handoff= handoff+entry
+        return f"Card Name: {self.name}\n {handoff}"
+        
+                
+            
 
 
     
