@@ -90,13 +90,6 @@ class Card:
             handoff= handoff+entry
         return f"Card Name: {self.name}\n {handoff}"
         
-                
-            
-
-
-    
-            
-            
             
 def game_setup():
     """Initial set up for the game, establishing number and names of players,
@@ -140,8 +133,6 @@ trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many ti
 
 
 
-
-
 # turn loop
 def turn(player_list):
     """Main game loop that handles player turns
@@ -167,10 +158,10 @@ def turn(player_list):
             # Check if player has a card that CAN be completed
             completable_cards = []
             for card in player.active_cards:
-                if card.check_completion():
+                if Card.check_completion():
                     completable_cards.append(card)
             
-            if completable_cards:
+            if len(completable_cards) > 0:
                 response = input(f"\nYou have {len(completable_cards)} card(s) that can be completed. Complete them now? (yes/no): ")
                 if response.lower() in ['yes', 'y']:
                     for card in completable_cards:
@@ -206,7 +197,7 @@ def turn(player_list):
                     trot(player)
                 
                 # Check if all tricks used, refresh if needed
-                if len(active_tricks) == 0:
+                if len(active_tricks) == 1:
                     refresh_tricks()
             else:
                 print("Invalid trick selection. Turn skipped.")
