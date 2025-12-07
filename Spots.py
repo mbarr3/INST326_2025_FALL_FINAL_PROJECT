@@ -1,7 +1,5 @@
 # Create rough outline of the program
-import random
-import bust
-
+import random,bust,chase_trick,dice_placement,fetch_function,gobble_trick,Howlfuc,random_roll,roll_over,trot_trick
 from trick_tracker import active_tricks, inactive_tricks, display_tricks, select_trick, use_trick, refresh_tricks
 
 
