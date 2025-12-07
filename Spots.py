@@ -1,6 +1,6 @@
 # Create rough outline of the program
 import random
-from collections import Counter
+import bust
 
 from trick_tracker import active_tricks, inactive_tricks, display_tricks, select_trick, use_trick, refresh_tricks
 
@@ -47,9 +47,8 @@ class Card:
     
     Attributes:
         name (str): name of the dog card
-        req_dice (set of ints): set of ints representing the values of the dice
-            on the dog card that must be fulfilled
-        fulfilled_dice (set of ints)
+        req_dice (dict): key is a die requirement and the value is a boolean of 
+                        if it is fulfilled or not
     """
     def __init__(self):
         """
@@ -92,13 +91,6 @@ class Card:
             handoff= handoff+entry
         return f"Card Name: {self.name}\n {handoff}"
         
-                
-            
-
-
-    
-            
-            
             
 def game_setup():
     """Initial set up for the game, establishing number and names of players,
@@ -142,8 +134,6 @@ trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many ti
 
 
 
-
-
 # turn loop
 def turn(player_list):
     """Main game loop that handles player turns
@@ -169,10 +159,10 @@ def turn(player_list):
             # Check if player has a card that CAN be completed
             completable_cards = []
             for card in player.active_cards:
-                if card.check_completion():
+                if Card.check_completion():
                     completable_cards.append(card)
             
-            if completable_cards:
+            if len(completable_cards) > 0:
                 response = input(f"\nYou have {len(completable_cards)} card(s) that can be completed. Complete them now? (yes/no): ")
                 if response.lower() in ['yes', 'y']:
                     for card in completable_cards:
@@ -208,7 +198,7 @@ def turn(player_list):
                     trot(player)
                 
                 # Check if all tricks used, refresh if needed
-                if len(active_tricks) == 0:
+                if len(active_tricks) == 1:
                     refresh_tricks()
             else:
                 print("Invalid trick selection. Turn skipped.")
