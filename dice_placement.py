@@ -1,5 +1,3 @@
-import bust
-
 
 def dice_placement(player, dice_list):
     """
@@ -25,7 +23,7 @@ def dice_placement(player, dice_list):
     Returns:
     
     Author: Mackenzie Barrett
-    Technique: 
+    Technique: Sequence Unpacking
     """
     placement_dict = {}
     prompt_list = []

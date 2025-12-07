@@ -10,20 +10,23 @@ THEN
 Roll 2 dice
 """
 
-def trot(Player,Selected_die):
+def trot(player, Selected_die):
     old_card = None
     old_place = None
     
-    for Card in Player.active_cards:
-        for place, value in Card.req_dice_items():
+    for card in player.active_cards:
+        for place, value in card.req_dice_items():
             if value == Selected_die:
                old_card = value
-               old_place = old_place
+               old_place = place
                break
+           
     if old_card is None:
         print("Selected card doesn't exist")
         return
     
     old_card.req_dice[old_place] = None
-    dp.dice_placement(Player, [Selected_die])  
+    
+    dp.dice_placement(Player, [Selected_die])
+    
     rr.roll(2)
