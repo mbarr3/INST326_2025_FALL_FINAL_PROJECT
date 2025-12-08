@@ -1,5 +1,6 @@
 import random_roll
 from diceplacement import dice_placement
+from Spots import Card
 
 def howl(player):
     """
@@ -13,7 +14,7 @@ Side-effects:
 Returns:
     None
     """
-    if Player.active_cards < 6:
-        Player.active_cards.append(Card())
+    if player.active_cards < 6:
+        player.active_cards.append(Card())
     dice = random_roll(1)
     dice_placement(player, dice)

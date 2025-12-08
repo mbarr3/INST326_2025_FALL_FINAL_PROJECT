@@ -33,8 +33,8 @@ def dice_placement(player, dice_list):
     for key in placement_dict.keys():
         for card in player.active_cards:
             for die in card.req_dice.keys():
-                if card.req_dice[key] == None:
-                    placement_dict[key].add(card)
+                if card.req_dice[key] == False:
+                    placement_dict[key].append(card)
     
     # Place die automatically on a card or in the yard OR prompt player to choose placement if multiple options   
     for key in placement_dict.keys():

@@ -11,7 +11,7 @@ from diceplacement import dice_placement
 def chase(player):
     while True:
         count = 1
-        hold = random_roll(count)
+        hold = roll(count)
         dice_placement(player,hold)
         inp = input("Would you like to roll again with one more die than before? (y/n)")
         if inp == "y":
