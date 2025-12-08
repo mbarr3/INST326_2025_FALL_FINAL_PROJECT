@@ -1,4 +1,5 @@
-import bust
+from bust import bust 
+
 def dice_placement(player, dice_list):
     """
     Args:
@@ -37,18 +38,16 @@ def dice_placement(player, dice_list):
         # if they cannot put it on a card they should select their yard
         # check if the player busts
     for die in dice_list:
-        while True:
-            card_choice = input(f"\nEnter the name of the card you would like to "\
-                f"place the {die} on (if you have no place to put the die, enter"\
-                    f" the word yard): ")
-            if card_choice == 'yard':
-                player.yard.append(die)
-                bust(player)
-                break
-            else:
-                for card in player.active_cards:
-                    if card.name == card_choice:
-                        card.req_dice[die] == True
+        card_choice = input(f"\nEnter the name of the card you would like to "\
+            f"place the {die} on (if you have no place to put the die, enter"\
+                f" the word yard): ")
+        if card_choice == 'yard':
+            player.yard.append(die)
+            bust(player)
+        else:
+            for card in player.active_cards:
+                if card.name == card_choice:
+                    card.req_dice[die] = True
 
     
     
