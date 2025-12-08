@@ -1,5 +1,5 @@
 import random_roll
-import dice_placement
+from diceplacement import dice_placement
 
 def howl(player):
     """

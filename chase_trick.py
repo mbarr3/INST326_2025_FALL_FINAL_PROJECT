@@ -5,7 +5,8 @@ Roll 1 die
 You may repeat this trick as many times as you want but each time roll 1 more 
 die than you just did (2, 3, 4...)
 """
-import random_roll, dice_placement
+from random_roll import roll
+from diceplacement import dice_placement
 
 def chase(player):
     while True:

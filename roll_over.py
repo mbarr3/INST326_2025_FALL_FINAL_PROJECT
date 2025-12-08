@@ -1,5 +1,5 @@
-import dice_placement
-import random_roll
+from random_roll import roll
+from diceplacement import dice_placement
 
 """Function for the roll over trick card
 

@@ -1,6 +1,6 @@
-import random_roll as rr
-import dice_placement as dp
-from Spots import Player, Card
+
+from random_roll import roll as rr
+from diceplacement import dice_placement as dp
 
 """Function for the trot trick
 
