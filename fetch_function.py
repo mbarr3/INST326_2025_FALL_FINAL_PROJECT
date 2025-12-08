@@ -1,5 +1,5 @@
-import random_roll
-import dice_placement
+from random_roll import roll
+from diceplacement import dice_placement
 
 def fetch(player):
     """Function to represent the "Fetch" action in the Spots game. Fetch calls the 
@@ -20,7 +20,7 @@ def fetch(player):
     Technique: List Comprehension
     """
     # Call temporary dice_roll function and save returned list to a variable
-    rolled = random_roll(8)
+    rolled = roll(8)
     print(f"Rolled dice: {rolled}")
     # Prompt and validate user input
     while True:

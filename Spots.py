@@ -1,11 +1,12 @@
 # Create rough outline of the program
-import random,bust,chase_trick,dice_placement,fetch_function,gobble_trick,Howlfuc,random_roll,roll_over,trot_trick
+import random
 from fetch_function import fetch
 from gobble_trick import gobble
 from Howlfuc import howl
 from roll_over import rollover
 from trot_trick import trot
 from chase_trick import chase
+from diceplacement import dice_placement
 from trick_tracker import active_tricks, inactive_tricks, display_tricks, select_trick, use_trick, refresh_tricks
 
 
