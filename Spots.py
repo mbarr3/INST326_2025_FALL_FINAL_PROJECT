@@ -1,5 +1,11 @@
 # Create rough outline of the program
 import random,bust,chase_trick,dice_placement,fetch_function,gobble_trick,Howlfuc,random_roll,roll_over,trot_trick
+from fetch_function import fetch
+from gobble_trick import gobble
+from Howlfuc import howl
+from roll_over import rollover
+from trot_trick import trot
+from chase_trick import chase
 from trick_tracker import active_tricks, inactive_tricks, display_tricks, select_trick, use_trick, refresh_tricks
 
 
@@ -37,7 +43,7 @@ class Player:
         self.yard = [random.randint(1,6)]
         # Deal initial 2 cards to the player
         for card in range(2):
-            self.cards.append(Card())
+            self.active_cards.append(Card())
             
     
 class Card:
@@ -73,9 +79,9 @@ class Card:
     def check_completion(self):
         """Checks if a player has a fulfilled card that can be completed"""
         if False not in self.req_dice.values():
-            True
+            return True
         else:
-            False
+            return False
     
     def __str__(self):
         back = []
@@ -99,8 +105,8 @@ def game_setup():
     player_list = []
     # Prompt how many players (1-4)
     while True:
-        player_count = input("\nWelcome to Spots! How many players want to play the"\
-            "game? (1-4):\t")
+        player_count = int(input("\nWelcome to Spots! How many players want to play the"\
+            "game? (1-4):\t"))
         # Validate input
         if not isinstance(player_count, int) or player_count not in range(1,5):
             print(f"{player_count} is not a valid option between 1 and 4")
@@ -108,7 +114,7 @@ def game_setup():
         # Initiate Player class for each player 
         for player in range(1, (player_count+1)):
             name = input("Please, enter your name:\t")
-            player_list.append([Player(name)])
+            player_list.append(Player(name))
         break   
            
     # Determine first player by the player with the highest buried die
@@ -135,7 +141,7 @@ trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many ti
 # turn loop
 def turn(player_list):
     
-    active_tricks = [['Chase', 'Fetch', 'Gobble', 'Howl', 'Roll Over', 'Trot']]
+    active_tricks = ['Chase', 'Fetch', 'Gobble', 'Howl', 'Roll Over', 'Trot']
     
     dead_tricks = []
     
@@ -200,24 +206,23 @@ def turn(player_list):
                     print("Invalid selection select an ACTIVE TRICK!")
             
             # Call the trick function and deactivate it
-            if trick in active_tricks:
                 # Execute trick based on which one was chosen
-                if trick == 'Chase':
-                    chase_trick(player)
-                elif trick == 'Fetch':
-                    fetch_function(player)
-                elif trick == 'Gobble':
-                    gobble_trick(player)
-                elif trick == 'Howl':
-                    Howlfuc(player)
-                elif trick == 'Roll Over':
-                    roll_over(player)
-                elif trick == 'Trot':
-                    trot_trick(player)
+            if trick == 'Chase':
+                chase(player)
+            elif trick == 'Fetch':
+                fetch(player)
+            elif trick == 'Gobble':
+                gobble(player)
+            elif trick == 'Howl':
+                howl(player)
+            elif trick == 'Roll Over':
+                rollover(player)
+            elif trick == 'Trot':
+                trot(player)
                 
-                # Check if all tricks used, refresh if needed
-                if len(active_tricks) == 1:
-                    refresh_tricks()
+            # Check if all tricks used, refresh if needed
+            if len(active_tricks) == 1:
+                refresh_tricks()
             
             # Check if all the player's dog cards are completed
             fulfilled_count = 0
@@ -245,3 +250,4 @@ def turn(player_list):
 def main():
     player_list = game_setup()
     turn(player_list)
+main()
