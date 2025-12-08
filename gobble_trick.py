@@ -15,5 +15,5 @@ def gobble(player):
             if not card.req_dice[dice]:
                 if blank_max < dice:
                     blank_max = dice
-    player.treats = treat - blank_max
+    player.treats = player.treats + (treat - blank_max)
             

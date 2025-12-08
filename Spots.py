@@ -54,6 +54,15 @@ trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many ti
 
 # turn loop
 def turn(player_list):
+    """Main game loop that handles player turns
+    
+    Args:
+        player_list (list): List of Player objects in turn order
+    Side effects:
+        Modifies player attributes, prints to console, manages game state
+    Returns:
+        None (exits when a player wins)
+    """
     
     active_tricks = ['Chase', 'Fetch', 'Gobble', 'Howl', 'Roll Over', 'Trot']
     
@@ -66,22 +75,16 @@ def turn(player_list):
     'Howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack.Then roll 1 die.", 
     'Roll Over': "Roll all your buried dice and then place or rebury them. Then you may roll 2 dice.", 
     'Trot': "You may move 1 die on your dog cards to any other space, changing the number if needed. Then roll 2 dice."
-}
+    }
 
-    """Main game loop that handles player turns
-    
-    Args:
-        player_list (list): List of Player objects in turn order
-    Side effects:
-        Modifies player attributes, prints to console, manages game state
-    Returns:
-        None (exits when a player wins)
-    """
     while True:
         for player in player_list:
             print(f"\n--- {player.name}'s Turn ---")
             print(f"Treats: {player.treats}")
-            print(f"Yard: {player.yard}")
+            print(f"Yard: {player.yard}\n")
+            print("Your active dog cards are:\n")
+            for card in player.active_cards:
+                print(f"{card}\n")
             
             
             # Check if player has a card that CAN be completed
