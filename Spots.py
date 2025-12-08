@@ -9,6 +9,7 @@ from chase_trick import chase
 from diceplacement import dice_placement
 from trick_tracker import active_tricks, inactive_tricks, display_tricks, select_trick, use_trick, refresh_tricks
 from player_card import Player, Card            
+
 def game_setup():
     """Initial set up for the game, establishing number and names of players,
     and turn order
