@@ -57,3 +57,7 @@ if __name__ == "__main__":
                     
 
             
+NOTES:
+    -integrate bust into ending the turn
+    -at the end of the gobble trick print players treats to show what the trick did
+    -print players cards before prompting them for which trick they want to do
