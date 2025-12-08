@@ -5,7 +5,7 @@ THEN
 Return 1 treat for each spot in your highest unfilled space
 
 """
-def gobble_trick(player):
+def gobble(player):
     treat = 7
     blank_max = 0
     for card in player.active_cards:

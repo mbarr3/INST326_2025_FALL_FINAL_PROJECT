@@ -7,7 +7,7 @@ die than you just did (2, 3, 4...)
 """
 import random_roll, dice_placement
 
-def chase_trick(player):
+def chase(player):
     while True:
         count = 1
         hold = random_roll(count)
