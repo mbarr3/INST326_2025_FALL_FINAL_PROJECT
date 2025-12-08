@@ -1,5 +1,6 @@
-import random_roll
+from random_roll import roll
 from diceplacement import dice_placement
+from player_card import Card
 
 
 def howl(player):
@@ -16,5 +17,5 @@ Returns:
     """
     if player.active_cards < 6:
         player.active_cards.append(Card())
-    dice = random_roll(1)
+    dice = roll(1)
     dice_placement(player, dice)

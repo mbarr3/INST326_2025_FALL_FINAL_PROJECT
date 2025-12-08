@@ -9,8 +9,8 @@ You may roll 1 die
 """
 
 def rollover(player):
-    hold = random_roll(len(player.yard))
+    hold = roll(len(player.yard))
     dice_placement(player, hold)
-    hold = random_roll(1)
+    hold = roll(1)
     dice_placement(player, hold)
     
