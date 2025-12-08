@@ -1,6 +1,6 @@
 import random_roll
 from diceplacement import dice_placement
-from Spots import Card
+
 
 def howl(player):
     """
