@@ -6,7 +6,6 @@ Return 1 treat for each spot in your highest unfilled space
 
 """
 from random_roll import roll
-from diceplacement import dice_placement
 
 def gobble(player):
     treat = 7

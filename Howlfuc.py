@@ -1,4 +1,4 @@
-import random_roll
+from random_roll import roll
 from diceplacement import dice_placement
 
 
