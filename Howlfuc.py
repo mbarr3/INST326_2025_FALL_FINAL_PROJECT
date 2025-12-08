@@ -1,9 +1,9 @@
 from random_roll import roll
 from diceplacement import dice_placement
-from player_card import Card
+from player_card import Player, Card
 
 
-def howl(player):
+def howl(Player):
     """
 Arguments:
     Player class object
@@ -15,7 +15,7 @@ Side-effects:
 Returns:
     None
     """
-    if player.active_cards < 6:
-        player.active_cards.append(Card())
+    if Player.active_cards < 6:
+        Player.active_cards.append(Card())
     dice = roll(1)
-    dice_placement(player, dice)
+    dice_placement(Player, dice)
