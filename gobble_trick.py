@@ -28,4 +28,6 @@ def gobble(player):
                     blank_max = dice
     player.treats = player.treats + (treat - blank_max)
     print(f"Your updated treats amount is {player.treats} treats!")
+    
+    return False
             
