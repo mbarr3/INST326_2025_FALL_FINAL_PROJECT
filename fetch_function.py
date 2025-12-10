@@ -31,6 +31,12 @@ def fetch(player):
         chosen_num = input("Choose one of the numbers present in the rolled dice" 
                            "(you will have to place or bury all dice of that "
                            "number): ")
+        try:
+            chosen_num = int(chosen_num)
+            
+        except:
+            print("You did not enter a number")
+            
         if isinstance(chosen_num, int):
             if chosen_num in range(1,7):
                 if chosen_num in rolled:
