@@ -31,8 +31,8 @@ def chase(player):
         while True:
             if player.treats > 0:
                 reroll = input(f"You have {player.treats}. Would you like to spend "\
-                    f"a treat to reroll? (y/n)").lower()
-            if reroll != "n" or reroll != "no" or reroll != "y" or reroll != "yes":
+                    f"a treat to reroll? (y/n) ").lower()
+            if reroll != "n" and reroll != "no" and reroll != "y" and reroll != "yes":
                 print(f"{reroll} is not y or n")
                 continue
             else:
