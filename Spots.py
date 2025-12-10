@@ -33,9 +33,11 @@ def game_setup():
             print(f"{player_count} is not a valid option between 1 and 4")
             continue
         # Initiate Player class for each player 
+        count = 1
         for player in range(1, (player_count+1)):
-            name = input("Please, enter your name:\t")
+            name = input(f"Player {count} please enter your name:\t")
             player_list.append(Player(name))
+            count+=1
         break   
            
     # Determine first player by the player with the highest buried die
@@ -74,24 +76,24 @@ def turn(player_list):
     Author:
     """
     
-    active_tricks = ['Chase', 'Fetch', 'Gobble', 'Howl', 'Roll Over', 'Trot']
+    active_tricks = ['chase', 'fetch', 'gobble', 'howl', 'roll over', 'trot']
     
     dead_tricks = []
     
     trick_descriptions = {
-    'Chase': "Roll 1 die. You may repeat this trick as many times as you want but each time roll 1 more die than you just did (2, 3, 4...)", 
-    'Fetch': "Roll 8 dice. Choose a number you rolled, and place or bury all dice of that number.Discard the rest.", 
-    'Gobble': "Take 7 treats. Then return 1 treat for each spot in your highest unfilled space.", 
-    'Howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack.Then roll 1 die.", 
-    'Roll Over': "Roll all your buried dice and then place or rebury them. Then you may roll 2 dice.", 
-    'Trot': "You may move 1 die on your dog cards to any other space, changing the number if needed. Then roll 2 dice."
+    'chase': "Roll 1 die. You may repeat this trick as many times as you want but each time roll 1 more die than you just did (2, 3, 4...)", 
+    'fetch': "Roll 8 dice. Choose a number you rolled, and place or bury all dice of that number.Discard the rest.", 
+    'gobble': "Take 7 treats. Then return 1 treat for each spot in your highest unfilled space.", 
+    'howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack.Then roll 1 die.", 
+    'roll over': "Roll all your buried dice and then place or rebury them. Then you may roll 2 dice.", 
+    'trot': "You may move 1 die on your dog cards to any other space, changing the number if needed. Then roll 2 dice."
     }
 
     while True:
         for player in player_list:
             print(f"\n--- {player.name}'s Turn ---")
             print(f"Treats: {player.treats}")
-            print(f"Yard: {player.yard}\n")
+            print(f"Yard: {sum(player.yard)}\n")
             print("Your active dog cards are:\n")
             for card in player.active_cards:
                 print(f"{card}\n")
@@ -118,12 +120,14 @@ def turn(player_list):
             print("\n" + "="*50)
             for i in range(len(active_tricks)):
                 trick = active_tricks[i]
-                print(f"{i+1}. {trick}: {trick_descriptions[trick]}")
+                print(f"{i+1}. {trick.capitalize()}: {trick_descriptions[trick]}")
                 print("="*50)        
 
             # Prompt player to select their turn action
             while True:
-                trick = input(f"\nWhat action would you like to take this turn: ")
+                trick = (input(f"\nWhat action would you like to take this turn: ").lower())
+                # TESTING
+                print(trick)
                 if trick in active_tricks:
                      idx = active_tricks.index(trick) 
                      dead_tricks.append(active_tricks[idx])
@@ -135,17 +139,17 @@ def turn(player_list):
             
             # Call the trick function and deactivate it
                 # Execute trick based on which one was chosen
-            if trick == 'Chase':
+            if trick == ('chase'):
                 bust_test = chase(player)
-            elif trick == 'Fetch':
+            elif trick == ('fetch'):
                 bust_test = fetch(player)
-            elif trick == 'Gobble':
+            elif trick == ('gobble'):
                 gobble(player)
-            elif trick == 'Howl':
+            elif trick == ('howl'):
                 bust_test = howl(player)
-            elif trick == 'Roll Over':
+            elif trick == ('roll over'):
                 bust_test = rollover(player)
-            elif trick == 'Trot':
+            elif trick == ('trot'):
                 bust_test = trot(player)
                 
             # Determine if player turn should continue

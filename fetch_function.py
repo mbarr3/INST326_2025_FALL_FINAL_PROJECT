@@ -39,7 +39,7 @@ def fetch(player):
             print(f"{chosen_num} is not present in the rolled dice")
             continue
     
-    bust_test = dice_placement(player, [die for die in rolled if die == chosen_num])
+    bust_test = dice_placement(player, [die for die in rolled if die == int(chosen_num)])
     if bust_test == True:
         return bust_test
     

@@ -61,3 +61,4 @@ NOTES:
     -integrate bust into ending the turn
     -at the end of the gobble trick print players treats to show what the trick did
     -Trick descriptions present in more than one place, where does it NEED to be?
+    - add print dice list to trick functions instead of dice placement

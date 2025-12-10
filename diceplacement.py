@@ -27,8 +27,6 @@ def dice_placement(player, dice_list):
     Technique: Sequence Unpacking
     """
     
-    # Print dice list to the player
-    print(f"Your rolled dice are: {dice_list}")
     # Print active cards to the player and their yard
     print("Your current active dog cards are:\n")
     for card in player.active_cards:

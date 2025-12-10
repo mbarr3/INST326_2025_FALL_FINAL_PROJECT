@@ -17,7 +17,7 @@ def howl(Player):
         
     Author:
     """
-    if Player.active_cards < 6:
+    if len(Player.active_cards) < 6:
         Player.active_cards.append(Card())
     dice = roll(1)
     bust_test = dice_placement(Player, dice)

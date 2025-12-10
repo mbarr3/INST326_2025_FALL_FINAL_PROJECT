@@ -24,6 +24,24 @@ def chase(player):
     count = 1
     while True:
         hold = roll(count)
+        # Print dice list to the player
+        print(f"Your rolled dice are: {hold}")
+        reroll = None
+        while True:
+            if player.treats > 1:
+                reroll = input(f"You have {player.treats}. Would you like to spend "\
+                    f"a treat to reroll? (y/n)").lower()
+            if reroll != "n" or reroll != "no" or reroll != "y" or reroll != "yes":
+                print(f"{reroll} is not y or n")
+                continue
+            else:
+                break
+        
+        # Restart function if they want to spend a treat  
+        if reroll == "y" or reroll == "yes":
+            player.treats-=1
+            continue
+            
         bust_test = dice_placement(player,hold)
         if bust_test == True:
             return bust_test
