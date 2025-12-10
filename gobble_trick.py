@@ -1,13 +1,24 @@
-"""Function for the gobble trick card
-
-Take 7 treats
-THEN
-Return 1 treat for each spot in your highest unfilled space
-
-"""
 from random_roll import roll
 
 def gobble(player):
+    """Function for the gobble trick card
+
+    Take 7 treats
+    THEN
+    Return 1 treat for each spot in your highest unfilled space
+
+    Args: 
+        player (Player obj): provides Player attributes yard and active_cards 
+            which provides Card class obj attributes
+    Side effects:
+        Establishes treat and blank_max variables to calculate how many treats
+            the player receives
+    Returns:
+        None
+
+    Author: 
+    Technique:
+    """
     treat = 7
     blank_max = 0
     for card in player.active_cards:
@@ -16,4 +27,5 @@ def gobble(player):
                 if blank_max < dice:
                     blank_max = dice
     player.treats = player.treats + (treat - blank_max)
+    print(f"Your updated treats amount is {player.treats} treats!")
             

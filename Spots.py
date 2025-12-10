@@ -1,4 +1,3 @@
-# Create rough outline of the program
 import random
 from fetch_function import fetch
 from gobble_trick import gobble
@@ -13,8 +12,16 @@ from player_card import Player, Card
 def game_setup():
     """Initial set up for the game, establishing number and names of players,
     and turn order
-    Side effects: creates Player class objects
+    
+    Side effects: 
+        Creates Player class objects
+        Creates player list to store player class objects
+        Sorts the player_list in descending order by player.yard value
     Returns:
+        player_list (list of player obj)
+        
+    Author: Mackenzie Barrett
+    Technique: Key function
     """
     player_list = []
     # Prompt how many players (1-4)
@@ -38,10 +45,7 @@ def game_setup():
     
     return player_list
 
-    
-        
 # Descriptions of the tricks for the players when choosing a trick
-# TODO find best way to present the descriptions to the player
 trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many times as you want but each time roll 1 more die than you just did (2, 3, 4...)", 
                       'Fetch': "Roll 8 dice.\nChoose a number you rolled, and place or bury all dice of that number.\nDiscard the rest.", 
                       'Gobble': "Take 7 treats.\nThen return 1 treat for each spot in your highest unfilled space.", 
@@ -51,7 +55,6 @@ trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many ti
                       }
 
 
-
 # turn loop
 def turn(player_list):
     """Main game loop that handles player turns
@@ -59,9 +62,16 @@ def turn(player_list):
     Args:
         player_list (list): List of Player objects in turn order
     Side effects:
+        Establishes active_tricks (list), dead_tricks (list), and trick 
+            descriptions (dict) to track tricks and prompt player actions
+        Establishes completable cards list and fulfilled count variable to track 
+            cards players can complete
         Modifies player attributes, prints to console, manages game state
+        
     Returns:
         None (exits when a player wins)
+        
+    Author:
     """
     
     active_tricks = ['Chase', 'Fetch', 'Gobble', 'Howl', 'Roll Over', 'Trot']
@@ -95,7 +105,8 @@ def turn(player_list):
                     
             
             if len(completable_cards) > 0:
-                response = input(f"\nYou have {len(completable_cards)} card(s) that can be completed. Complete them now? (yes/no): ")
+                response = input(f"\nYou have {len(completable_cards)} card(s)"\
+                    f"that can be completed. Complete them now? (yes/no): ")
                 if response.lower() in ['yes', 'y']:
                     for card in completable_cards:
                         player.completed_cards.append(card)
@@ -120,7 +131,7 @@ def turn(player_list):
 
                      break
                 else:
-                    print("Invalid selection select an ACTIVE TRICK!")
+                    print("Invalid selection, select an ACTIVE TRICK!")
             
             # Call the trick function and deactivate it
                 # Execute trick based on which one was chosen

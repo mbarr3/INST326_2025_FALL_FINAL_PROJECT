@@ -1,16 +1,18 @@
 import random
 
 def roll(rolls):
-    """ 
-    Summary: 
-        Generates random numbers between 1-6 to simulate a dice roll 
-        stores all the randomly generated numbers in a list to be returned 
+    """Generates random numbers between 1-6 to simulate a dice roll stores all 
+    the randomly generated numbers in a list to be returned 
     
     Args:
         rolls (int): The amount of random dice rolls you would like
-
+    Side effects:
+        Establishes back and count variables to track how many die still need
+            to be rolled and storing the values that are rolled
     Returns:
-        List: List with all the randomly rolled dice values in each index
+        back (list): List with all the randomly rolled dice values in each index
+        
+    Author:
     """
     back = list()
     count = 0

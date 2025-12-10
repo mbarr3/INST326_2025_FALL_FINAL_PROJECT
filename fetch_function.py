@@ -11,10 +11,14 @@ def fetch(player):
     Args:
         player (Player obj): a Player class object with access to Player
             attributes for the dice_placement function
-
-    Side-effects:
-        Saves the list returned by the random_roll function to a variable
+    Side effects:
+        Calls roll function
+        Saves the list returned by the roll function to a variable
+        Prints the list to the terminal
         Creates a chosen_num variable to store the player's input chosen number
+        Calls dice placement function 
+    Returns:
+        None
 
     Author: Mackenzie Barrett
     Technique: List Comprehension

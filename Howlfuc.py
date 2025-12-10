@@ -2,18 +2,20 @@ from random_roll import roll
 from diceplacement import dice_placement
 from player_card import Player, Card
 
-
 def howl(Player):
-    """
-Arguments:
-    Player class object
-
-Side-effects:
-    If player has less than 6 cards call the deal function which will add 
-    another card to the player's dog cards. Then the player will roll one die.
+    """Function for the Howl trick
+        If player has less than 6 cards call the deal function which will add 
+        another card to the player's dog cards. Then the player will roll one die.
     
-Returns:
-    None
+    Arguments:
+        Player class object
+    Side-effects:
+        Establishes a dice variable to save the value of the rolled die
+        Calls the dice placement function to place the rolled die
+    Returns:
+        None
+        
+    Author:
     """
     if Player.active_cards < 6:
         Player.active_cards.append(Card())

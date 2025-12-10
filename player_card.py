@@ -15,14 +15,17 @@ class Player:
         yard (int): tracks the value in the player's yard for bust purposes
     """
     def __init__(self, name):
-        """
+        """Initialize new Player class object
+        
         Args:
             name (str): Player's input name
         Side effects:
             Sets attributes name, active_cards, completed_cards, total_cards,
             treats, and yard.
             Also initiates two Card class objects and appends them to the Player
-            object's active_cards list
+            object's active_cards list  
+        
+        Author: Mackenzie Barrett 
         """
         self.name = name
         # List of Card class objects
@@ -43,14 +46,20 @@ class Card:
         name (str): name of the dog card
         req_dice (dict): key is a die requirement and the value is a boolean of 
                         if it is fulfilled or not
+    
+    Author:
     """
     def __init__(self):
-        """
+        """Initialize new Card class object
+        
         Side effects:
-            Sets the attributes name, req_dice, and fulfilled_dice
-        Returns:
+            Sets the attributes name and req_dice
+            Establishes list card_names
+        
+        Author: 
         """
         # List of names for dog cards 
+        # TODO Find a way to alter the list to avoid duplicate dog names?
         card_names = ["Max", "Luna", "Bella", "Gus", "Teddy", "Daisy", "Bear",
                     "Willow", "Finn", "Molly", "Cooper", "Nala", "Rocky", 
                     "Coco", "Milo", "Cookie", "Buster", "Roxy", "Rex", "Jack",
@@ -67,13 +76,30 @@ class Card:
             self.req_dice[random.randint(1,6)] = False
             
     def check_completion(self):
-        """Checks if a player has a fulfilled card that can be completed"""
+        """Checks if a player has a fulfilled card that can be completed
+        
+        Returns:
+            bool (True/False): True if a card is fulfilled, False if it is not
+
+        Author: 
+        """
         if False not in self.req_dice.values():
             return True
         else:
             return False
     
     def __str__(self):
+        """Informal representation of a Card class object
+        
+        Side effects:
+            establishes back and handoff variables to append strings for each
+            required element of the Card obj
+            
+        Returns:
+            str: string containing the name of the Card obj and its requirements
+            
+        Author: Sean Tully
+        """
         back = []
         handoff = ""
         for key in self.req_dice:
