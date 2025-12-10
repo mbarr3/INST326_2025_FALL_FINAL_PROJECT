@@ -140,7 +140,7 @@ def turn(player_list):
             elif trick == 'Fetch':
                 bust_test = fetch(player)
             elif trick == 'Gobble':
-                bust_test = gobble(player)
+                gobble(player)
             elif trick == 'Howl':
                 bust_test = howl(player)
             elif trick == 'Roll Over':
