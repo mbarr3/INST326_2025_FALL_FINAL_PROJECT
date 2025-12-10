@@ -13,11 +13,13 @@ def howl(Player):
         Establishes a dice variable to save the value of the rolled die
         Calls the dice placement function to place the rolled die
     Returns:
-        None
+        bust_test (bool): True/False returned by bust function in dice placement
         
     Author:
     """
     if Player.active_cards < 6:
         Player.active_cards.append(Card())
     dice = roll(1)
-    dice_placement(Player, dice)
+    bust_test = dice_placement(Player, dice)
+    if bust_test == True:
+        return bust_test

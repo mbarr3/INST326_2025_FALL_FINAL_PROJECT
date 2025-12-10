@@ -21,7 +21,7 @@ def dice_placement(player, dice_list):
                                     in the player's yard
         Updates the Card obj attributes req_dice and yard
     Returns:
-        None
+        bust_test (bool): True/False returned by bust function
         
     Author: Mackenzie Barrett
     Technique: Sequence Unpacking
@@ -43,8 +43,10 @@ def dice_placement(player, dice_list):
                 f" the word yard): ")
         if card_choice == 'yard':
             player.yard.append(die)
-            bust(player)
+            bust_test = bust(player)
+            return bust_test
         else:
             for card in player.active_cards:
                 if card.name == card_choice:
                     card.req_dice[die] = True
+                    

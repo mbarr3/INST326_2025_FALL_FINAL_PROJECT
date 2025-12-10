@@ -14,13 +14,17 @@ def rollover(player):
     Side effects:
         Calls roll and dice placement functions
     Returns:
-        None 
+        bust_test (bool): True/False from bust function 
         
     Author: 
     Technique:
     """
     hold = roll(len(player.yard))
-    dice_placement(player, hold)
+    bust_test = dice_placement(player, hold)
+    if bust_test == True:
+        return bust_test
     hold = roll(1)
-    dice_placement(player, hold)
+    bust_test = dice_placement(player, hold)
+    if bust_test == True:
+        return bust_test
     

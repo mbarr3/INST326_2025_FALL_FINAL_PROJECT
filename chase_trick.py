@@ -24,14 +24,16 @@ def chase(player):
     count = 1
     while True:
         hold = roll(count)
-        dice_placement(player,hold)
+        bust_test = dice_placement(player,hold)
+        if bust_test == True:
+            return bust_test
         inp = input("Would you like to roll again with one more die than before? (y/n)")
         if inp == "y":
             count+=1
             continue
         elif inp == "n":
             break
-        else: # TODO Need to adjust where it continues to ask if they want to roll again until valid input
+        else:
             print(f"{inp} is not y or n")
             continue
     

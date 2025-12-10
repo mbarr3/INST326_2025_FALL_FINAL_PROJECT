@@ -18,7 +18,7 @@ def fetch(player):
         Creates a chosen_num variable to store the player's input chosen number
         Calls dice placement function 
     Returns:
-        None
+        bust_test (bool): True or False to indicate if the player's turn should end
 
     Author: Mackenzie Barrett
     Technique: List Comprehension
@@ -39,5 +39,7 @@ def fetch(player):
             print(f"{chosen_num} is not present in the rolled dice")
             continue
     
-    dice_placement(player, [die for die in rolled if die == chosen_num])
+    bust_test = dice_placement(player, [die for die in rolled if die == chosen_num])
+    if bust_test == True:
+        return bust_test
     

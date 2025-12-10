@@ -55,11 +55,17 @@ def trot(player):
             
     if dest is None:
         print("This card does not exist.")
-        return
+        # TODO Need to add player input validation instead of kicking them out of the function with return
+        #return
     
     new_value = int(input("Choose a new value for this die(1-6): "))
     
      
-    dp.dice_placement(player, [new_value]) 
-    rr.roll(2)
-    
+    bust_test = dp.dice_placement(player, [new_value]) 
+    if bust_test == True:
+        return bust_test
+
+    dice = rr.roll(2)
+    bust_test = dp.dice_placement(player, dice)
+    if bust_test == True:
+        return bust_test

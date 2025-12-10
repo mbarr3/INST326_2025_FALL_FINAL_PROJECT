@@ -8,7 +8,7 @@ def bust (player):
     Side effects:
         Establishes total variable to calculate total value in a player's yard
     Returns:
-        True if the player has busted 
+        Bool: True if the player has busted; False if they player has not busted
 
     Author: Sean Tully
     Technique:
@@ -19,6 +19,12 @@ def bust (player):
     if total > 7:
         player.yard = list()
         for card in player.active_cards:
-            card.fulfilled_dice = list()
-        return True # Add method to turn order to end turn
+            for key in player.req_dice.keys():
+                player.req_dice[key] = False
+        print("Aw, you busted...Your turn is now over. Your yard and active" \
+            " cards have been reset.")
+        return True 
+    else:
+        # If the player did not bust
+        return False
    

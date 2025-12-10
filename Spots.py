@@ -136,17 +136,21 @@ def turn(player_list):
             # Call the trick function and deactivate it
                 # Execute trick based on which one was chosen
             if trick == 'Chase':
-                chase(player)
+                bust_test = chase(player)
             elif trick == 'Fetch':
-                fetch(player)
+                bust_test = fetch(player)
             elif trick == 'Gobble':
-                gobble(player)
+                bust_test = gobble(player)
             elif trick == 'Howl':
-                howl(player)
+                bust_test = howl(player)
             elif trick == 'Roll Over':
-                rollover(player)
+                bust_test = rollover(player)
             elif trick == 'Trot':
-                trot(player)
+                bust_test = trot(player)
+                
+            # Determine if player turn should continue
+            if bust_test == True:
+                continue
                 
             # Check if all tricks used, refresh if needed
             if len(active_tricks) == 1:
