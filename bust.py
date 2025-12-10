@@ -1,4 +1,4 @@
-def bust (player):
+def bust (player): 
     """Function meant calculate a player's yard and clear all uncompleted dog cards 
     and yard when a player busts
 
@@ -19,7 +19,7 @@ def bust (player):
     if total > 7:
         player.yard = list()
         for card in player.active_cards:
-            for key in player.req_dice.keys():
+            for key in card.req_dice.keys():
                 player.req_dice[key] = False
         print("Aw, you busted...Your turn is now over. Your yard and active" \
             " cards have been reset.")
