@@ -48,7 +48,7 @@ def chase(player, total_rolls):
             
         bust_test = dice_placement(player, hold)
 
-        if bust_test:
+        if bust_test == True:
             return True
         
         inp = input(f"Would you like to roll again with {count+1} dice this "\
@@ -62,4 +62,4 @@ def chase(player, total_rolls):
             print(f"{inp} is not y or n")
             continue
     
-    return False if bust_test is None else bust_test
+    return False
