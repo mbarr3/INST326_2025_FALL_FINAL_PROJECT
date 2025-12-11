@@ -195,7 +195,7 @@ def turn(player_list):
 def main():
     player_list = game_setup()
     turn(player_list)
-    if __name__ == "__main__":
-        main()
 
-main()
+if __name__ == "__main__":
+    main()
+
