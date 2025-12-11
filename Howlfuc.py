@@ -28,9 +28,9 @@ def howl(player,total_rolls):
             print(f"{card}\n")
     else:
         print("You already have 6 dog cards so you were not dealt a new card.")
-        
+      
+    print("\n***~~~Now you roll one die~~~***")  
     while True:
-        print("\n***~~~Now you roll one die~~~***")
         dice = roll(1)
         total_rolls.extend(dice)
         
