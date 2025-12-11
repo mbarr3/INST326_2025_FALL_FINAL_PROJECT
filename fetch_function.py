@@ -29,7 +29,7 @@ def fetch(player, total_rolls):
         total_rolls.extend(rolled)
         reroll = None
         
-        print(f"Rolled dice: {rolled}")
+        print(f"\nRolled dice: {rolled}")
         
         if player.treats > 0:
             while True:
@@ -48,14 +48,13 @@ def fetch(player, total_rolls):
         
         # Prompt and validate user input
         while True:
-            chosen_num = input("Choose one of the numbers present in the rolled dice" 
+            chosen_num = input("\nChoose one of the numbers present in the rolled dice" 
                             "(you will have to place or bury all dice of that "
                             "number): ")
             try:
                 chosen_num = int(chosen_num)
-                
             except:
-                print("You did not enter a number")
+                print("\nInvalid Selection: You did not enter a number value.")
                 continue
                 
             if isinstance(chosen_num, int):
@@ -63,12 +62,13 @@ def fetch(player, total_rolls):
                     if chosen_num in rolled:
                         break
             else:
-                print(f"{chosen_num} is not present in the rolled dice")
+                print(f"Invalid Selection: {chosen_num} is not present in the "\
+                    "rolled dice")
                 continue
         
         dice_list = [die for die in rolled if die == chosen_num]
         
-        print(f"Your dice list is: {dice_list}")
+        print(f"\nYour dice list is: {dice_list}")
         
         bust_test = dice_placement(player, dice_list)
         return bust_test

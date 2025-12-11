@@ -21,6 +21,7 @@ def rollover(player, total_rolls):
     """
     while True:
         hold = roll(len(player.yard))
+        player.yard = list()
         total_rolls.extend(hold)
         
         reroll = None
@@ -46,8 +47,18 @@ def rollover(player, total_rolls):
         bust_test = dice_placement(player, hold)
         if bust_test == True:
             return bust_test
-        print("\nNow you get to roll one die\n")
+        print("\nNow you get to roll one die")
         hold = roll(1)
+        print(f"\nYour rolled dice are: {hold}")
+        if player.treats > 0:
+            while True:
+                reroll = input(f"You have {player.treats} treat(s). Would you like to spend "\
+                    f"a treat to reroll? (y/n) ").lower()
+                if reroll not in ['yes', 'y', 'no', 'n']:
+                    print(f"{reroll} is not y or n")
+                    continue
+                else:
+                    break
         bust_test = dice_placement(player, hold)
         return bust_test
     

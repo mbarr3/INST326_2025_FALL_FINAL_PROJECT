@@ -58,6 +58,3 @@ if __name__ == "__main__":
 
             
 NOTES:
-    -integrate bust into ending the turn
-    -Trick descriptions present in more than one place, where does it NEED to be?
-    - add print dice list to trick functions instead of dice placement

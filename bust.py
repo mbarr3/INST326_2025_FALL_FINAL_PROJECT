@@ -21,7 +21,7 @@ def bust (player):
         for card in player.active_cards:
             for key in card.req_dice.keys():
                 card.req_dice[key] = False
-        print("Aw, you busted...Your turn is now over. Your yard and active" \
+        print("\nAw, you busted...Your turn is now over. Your yard and active" \
             " cards have been reset.")
         return True 
     else:

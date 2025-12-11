@@ -27,7 +27,7 @@ def howl(player,total_rolls):
         reroll = None
         
         # Print dice list to the player
-        print(f"Your rolled dice are: {dice}")
+        print(f"\nYour rolled dice are: {dice}")
         
         if player.treats > 0:
             while True:
@@ -45,5 +45,4 @@ def howl(player,total_rolls):
             continue
         
         bust_test = dice_placement(player, dice)
-        if bust_test == True:
-            return bust_test
+        return bust_test

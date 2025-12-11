@@ -21,8 +21,15 @@ def chase(player,total_rolls):
     Author: 
     Technique:
     """
+    
     count = 1
     while True:
+        # Print active cards to the player and their yard
+        print("Your current active dog cards are:\n")
+        for card in player.active_cards:
+            print(f"{card}\n")
+        print(f"Your yard: {sum(player.yard)}\n")
+        
         hold = roll(count)
         total_rolls.extend(hold)
         

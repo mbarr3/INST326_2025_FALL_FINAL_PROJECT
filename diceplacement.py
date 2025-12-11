@@ -27,32 +27,39 @@ def dice_placement(player, dice_list):
     Technique: Sequence Unpacking
     """
     
-    # Print active cards to the player and their yard
-    print("Your current active dog cards are:\n")
-    for card in player.active_cards:
-        print(f"{card}\n")
-    print(f"Your yard: {player.yard}\n")
-    # Ask player which card they would like to place the first die in the dice list in
-        # if they cannot put it on a card they should select their yard
-        # check if the player busts
     for die in dice_list:
+        # Print active cards to the player and their yard
+        print("Your current active dog cards are:\n")
+        for card in player.active_cards:
+            print(f"{card}\n")
+        print(f"Your yard: {sum(player.yard)}\n")
+        
+        # Ask player which card they would like to place the first die in the dice list in
+        # if they cannot put it on a card they should select their yard
         while True:
-            card_choice = input(f"\nEnter the name of the card you would like to "\
+            card_choice = input(f"Enter the name of the card you would like to "\
                 f"place the {die} on (if you have no place to put the die, enter"\
                     f" the word yard): ")
-            if card_choice == 'yard':
+            if card_choice.lower() == 'yard':
                 player.yard.append(die)
+                # check if the player busts
                 bust_test = bust(player)
                 if bust_test == True:
                     return bust_test
+                else:
+                    break
             else:
-                bungus = False
+                found = False
                 for card in player.active_cards:
-                    if card.name == card_choice and die in card.req_dice.keys():
+                    if card.name == card_choice.lower().capitalize() and die in card.req_dice.keys():
                         if card.req_dice[die] == False: 
                             card.req_dice[die] = True 
-                            bungus = True
-                if bungus == False:
-                    print ("Invalid Card Selection")
-                    continue 
-            return False     
+                            found = True
+                if found == False:
+                    print ("\nInvalid Selection: either the card you chose"\
+                        " was not found or does not have a spot for the die "\
+                            "value you selected")
+                    continue
+                else:
+                    break
+    return False     

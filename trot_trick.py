@@ -25,48 +25,50 @@ def trot(player, total_rolls):
     Author: Samuel Onakoya
     Technique:
     """
-    print(f"Your current cards: {[card.name for card in player.active_cards]}")
-    old_card = input("Which card would you like to remove a die from? ")
-    old_value = int(input("which die would like to remove? "))
     
-    found = False
-    
-    for card in player.active_cards:
-        if card.name.lower() == old_card.lower():
-            for place, value in card.req_dice.items():
-                if value == old_value:
-                    card.req_dice[place] = None
+    while True:
+        print(f"Your current cards: {[card for card in player.active_cards]}")
+        old_card = input("\nWhich card would you like to remove a die from? ")
+        old_value = int(input("which die value would like to remove? "))
+        
+        found = False
+        
+        for card in player.active_cards:
+            if card.name.lower() == old_card.lower() and old_value in card.req_dice.keys():
+                if card.req_dice[old_value] == True:
+                    card.req_dice[old_value] = False
                     found = True
-                    break
-            if found == True:
-                break
-      
-    # TODO We don't need this part if we call the dice_placement function since 
-    # dice placement asks the player which card to place the value on we just need 
-    # to ask what they want the value to be and pass it to dice placement
-    print(f"Which card from the {[card.name for card in player.active_cards]} do you want to add a die to? ")
-    new_card = input()
-    
-    dest = None
-    for card in player.active_cards:
-        if card.name.lower() == new_card.lower():
-            dest = card
+        if found == False:
+            print("Invalid selection: Either the card you selected was not "\
+                "found or does not have the fulfilled die value you selected")
+            continue
+        else:
             break
+    
+    while True:
+        new_value = int(input("Choose a new value for this die(1-6): "))
+        
+        try:
+            new_value = int(new_value)
+                
+        except:
+            print("\nInvalid Selection: You did not enter a number value.")
+            continue
             
-    if dest is None:
-        print("This card does not exist.")
-        # TODO Need to add player input validation instead of kicking them out of the function with return
-        #return
-    
-    new_value = int(input("Choose a new value for this die(1-6): "))
-    
+        if isinstance(new_value, int):
+            if new_value in range(1,7):
+                break
+        else:
+            print(f"\nInvalid Selection: {new_value} is not a number between 1 and 6")
+            continue
      
     bust_test = dp.dice_placement(player, [new_value]) 
     if bust_test == True:
         return bust_test
 
+    print("\nYou now roll 2 dice")
     dice = rr.roll(2)
     total_rolls.extend(dice)
+    print(f"\nYour dice list is: {dice}")
     bust_test = dp.dice_placement(player, dice)
-    if bust_test == True:
-        return bust_test
+    return bust_test

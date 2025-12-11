@@ -29,7 +29,7 @@ def game_setup():
     # Prompt how many players (1-4)
     while True:
         player_count = int(input("\nWelcome to Spots! How many players want to play the"\
-            "game? (1-4):\t"))
+            "game? (1-4): "))
         # Validate input
         if not isinstance(player_count, int) or player_count not in range(1,5):
             print(f"{player_count} is not a valid option between 1 and 4")
@@ -37,7 +37,7 @@ def game_setup():
         # Initiate Player class for each player 
         count = 1
         for player in range(1, (player_count+1)):
-            name = input(f"Player {count} please enter your name:\t")
+            name = input(f"Player {count} please enter your name: ")
             player_list.append(Player(name))
             count+=1
         break   
@@ -48,15 +48,6 @@ def game_setup():
     player_list.sort(reverse = True, key = lambda x : x.yard)
     
     return player_list
-
-# Descriptions of the tricks for the players when choosing a trick
-trick_descriptions = {'Chase': "Roll 1 die. You may repeat this trick as many times as you want but each time roll 1 more die than you just did (2, 3, 4...)", 
-                      'Fetch': "Roll 8 dice.\nChoose a number you rolled, and place or bury all dice of that number.\nDiscard the rest.", 
-                      'Gobble': "Take 7 treats.\nThen return 1 treat for each spot in your highest unfilled space.", 
-                      'Howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack.\nThen roll 1 die.", 
-                      'Roll Over': "Roll all your buried dice and then place or rebury them.\nThen you may roll 2 die.", 
-                      'Trot': "You may move 1 die on your dog cards to any other space, changing the number if needed.\nThen roll 2 dice."
-                      }
 
 
 # turn loop
@@ -86,7 +77,7 @@ def turn(player_list):
     'chase': "Roll 1 die. You may repeat this trick as many times as you want but each time roll 1 more die than you just did (2, 3, 4...)", 
     'fetch': "Roll 8 dice. Choose a number you rolled, and place or bury all dice of that number.Discard the rest.", 
     'gobble': "Take 7 treats. Then return 1 treat for each spot in your highest unfilled space.", 
-    'howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack.Then roll 1 die.", 
+    'howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack. Then roll 1 die.", 
     'roll over': "Roll all your buried dice and then place or rebury them. Then you may roll 2 dice.", 
     'trot': "You may move 1 die on your dog cards to any other space, changing the number if needed. Then roll 2 dice."
     }
@@ -116,7 +107,7 @@ def turn(player_list):
                         player.completed_cards.append(card)
                         player.active_cards.remove(card)
                         print(f"Completed card: {card.name}")
-                        continue
+                    continue
                     
             
             # Display available tricks
@@ -129,8 +120,6 @@ def turn(player_list):
             # Prompt player to select their turn action
             while True:
                 trick = (input(f"\nWhat action would you like to take this turn: ").lower())
-                # TESTING
-                print(trick)
                 if trick in active_tricks:
                      idx = active_tricks.index(trick) 
                      dead_tricks.append(active_tricks[idx])
