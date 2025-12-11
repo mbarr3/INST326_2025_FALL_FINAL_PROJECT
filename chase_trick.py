@@ -21,11 +21,6 @@ def chase(player,total_rolls):
     Author: 
     Technique:
     """
-    # Print active cards to the player and their yard
-    print("Your current active dog cards are:\n")
-    for card in player.active_cards:
-        print(f"{card}\n")
-    print(f"Your yard: {sum(player.yard)}\n")
     
     # Tracker for increase dice amounts
     count = 1

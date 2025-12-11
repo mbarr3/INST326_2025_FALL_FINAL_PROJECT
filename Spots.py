@@ -107,6 +107,11 @@ def turn(player_list):
                         player.completed_cards.append(card)
                         player.active_cards.remove(card)
                         print(f"Completed card: {card.name}")
+                        # Deal a card to replace the completed card
+                        player.active_cards.append(Card())
+                    print("Your updated active dog cards are:\n")
+                    for card in player.active_cards:
+                        print(f"{card}\n")
                     continue
                     
             
@@ -120,7 +125,7 @@ def turn(player_list):
             # Prompt player to select their turn action
             while True:
                 trick = (input(f"\nWhat action would you like to take this turn: ").lower())
-                # Remove trick from active tricks list
+                # Move trick from active tricks list to dead_tricks list
                 if trick in active_tricks:
                      idx = active_tricks.index(trick) 
                      dead_tricks.append(active_tricks[idx])
@@ -160,7 +165,9 @@ def turn(player_list):
                 
             # Check if all tricks used, refresh if needed
             if len(active_tricks) == 1:
-                refresh_tricks()
+                active_tricks.extend(dead_tricks)
+                dead_tricks.clear()
+                print("\nAll tricks refreshed!")
             
             # Check if all the player's dog cards are completed
             fulfilled_count = 0

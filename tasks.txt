@@ -57,10 +57,18 @@ if __name__ == "__main__":
                     
 
 BUGS:
-- Tricks are not refreshing when only one trick remains
+- Need to fix end of turn checks not happening when a player busts
+    EX. skips trick reset 
+
             
 NOTES:
 - Can we delete AurdosFP1.py and trick_tracker.py files?
+- Need to find a way to implement a treat being associated with the last trick 
+    left before trick refresh and the next player to choose that trick should 
+    received the treat
+- We should implement a skip option for tricks where the player cannot do the 
+    action part of the action (trot) but can continue to do the second part of 
+    the trick (roll 2)
 - There seem to be some unused imports in our Spots file, can we get rid of those?
 - We need to write our README and annotated bibliography (info in the final project description in canvas)
 - Need to add if __name__ == "__main__"

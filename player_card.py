@@ -31,7 +31,6 @@ class Player:
         # List of Card class objects
         self.active_cards = []
         self.completed_cards = []
-        self.total_cards = ((len(self.active_cards)) + (len(self.completed_cards)))
         self.treats = 1
         self.yard = [random.randint(1,6)]
         # Deal initial 2 cards to the player

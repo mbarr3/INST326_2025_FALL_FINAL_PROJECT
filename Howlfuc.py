@@ -17,9 +17,22 @@ def howl(player,total_rolls):
         
     Author:
     """
-    if len(player.active_cards) < 6:
+    total_cards = (len(player.active_cards) + len(player.completed_cards))
+    if total_cards < 6:
+        # TODO TESTING
+        print(f"Player active cards count: {len(player.active_cards)}")
+        print(f"Player total cards: {total_cards}")
         player.active_cards.append(Card())
-    
+        # Print the players updated active dog cards 
+        print("Your active dog cards are:\n")
+        for card in player.active_cards:
+            print(f"{card}\n")
+    else:
+        print("You already have 6 dog cards so you were not dealt a new card.")
+        # TODO TESTING
+        print(f"Player active cards count: {len(player.active_cards)}")
+        print(f"Player total cards: {total_cards}")
+        
     while True:
         dice = roll(1)
         total_rolls.extend(dice)
