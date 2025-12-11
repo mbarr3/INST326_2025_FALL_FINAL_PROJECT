@@ -1,7 +1,7 @@
 from random_roll import roll as rr
 from diceplacement import dice_placement as dp
 
-def trot(player):
+def trot(player, total_rolls):
     """Function for the trot trick
 
     You may move 1 die on your dog cards to any other space, changing the number if 
@@ -66,6 +66,7 @@ def trot(player):
         return bust_test
 
     dice = rr.roll(2)
+    total_rolls.extend(dice)
     bust_test = dp.dice_placement(player, dice)
     if bust_test == True:
         return bust_test

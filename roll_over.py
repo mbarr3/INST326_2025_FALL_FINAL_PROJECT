@@ -1,7 +1,7 @@
 from random_roll import roll
 from diceplacement import dice_placement
 
-def rollover(player):
+def rollover(player, total_rolls):
     """Function for the roll over trick card
 
     Roll all your buried dice and then place or rebury them
@@ -21,6 +21,7 @@ def rollover(player):
     """
     while True:
         hold = roll(len(player.yard))
+        total_rolls.extend(hold)
         
         reroll = None
         

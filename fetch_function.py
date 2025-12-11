@@ -1,7 +1,7 @@
 from random_roll import roll
 from diceplacement import dice_placement
 
-def fetch(player):
+def fetch(player, total_rolls):
     """Function to represent the "Fetch" action in the Spots game. Fetch calls the 
     random_roll function with an int arg so it returns a list of int rolled dice.
     Prompts the player to select a number from the rolled dice and validates that
@@ -26,6 +26,7 @@ def fetch(player):
     while True:
         # Call roll function and save returned list to a variable
         rolled = roll(8)
+        total_rolls.extend(rolled)
         reroll = None
         
         print(f"Rolled dice: {rolled}")

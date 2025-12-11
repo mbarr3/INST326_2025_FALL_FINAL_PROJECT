@@ -2,7 +2,7 @@ from random_roll import roll
 from diceplacement import dice_placement
 from player_card import Card
 
-def howl(player):
+def howl(player,total_rolls):
     """Function for the Howl trick
         If player has less than 6 cards call the deal function which will add 
         another card to the player's dog cards. Then the player will roll one die.
@@ -22,6 +22,7 @@ def howl(player):
     
     while True:
         dice = roll(1)
+        total_rolls.extend(dice)
         
         reroll = None
         

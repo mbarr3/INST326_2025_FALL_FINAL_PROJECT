@@ -1,7 +1,7 @@
 from random_roll import roll
 from diceplacement import dice_placement
 
-def chase(player):
+def chase(player,total_rolls):
     """Function for the chase trick card
 
     Roll 1 die
@@ -24,6 +24,7 @@ def chase(player):
     count = 1
     while True:
         hold = roll(count)
+        total_rolls.extend(hold)
         
         reroll = None
         

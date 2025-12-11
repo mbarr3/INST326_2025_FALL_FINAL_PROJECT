@@ -9,6 +9,8 @@ from diceplacement import dice_placement
 from trick_tracker import active_tricks, inactive_tricks, display_tricks, select_trick, use_trick, refresh_tricks
 from player_card import Player, Card            
 
+total_rolls = [] 
+
 def game_setup():
     """Initial set up for the game, establishing number and names of players,
     and turn order
@@ -141,17 +143,22 @@ def turn(player_list):
             # Call the trick function and deactivate it
                 # Execute trick based on which one was chosen
             if trick == ('chase'):
-                bust_test = chase(player)
+                bust_test = chase(player, total_rolls)
+            
             elif trick == ('fetch'):
-                bust_test = fetch(player)
+                bust_test = fetch(player, total_rolls)
+                
             elif trick == ('gobble'):
                 bust_test = gobble(player)
+                
             elif trick == ('howl'):
-                bust_test = howl(player)
+                bust_test = howl(player, total_rolls)
+                
             elif trick == ('roll over'):
-                bust_test = rollover(player)
+                bust_test = rollover(player, total_rolls)
+                
             elif trick == ('trot'):
-                bust_test = trot(player)
+                bust_test = trot(player, total_rolls)
                 
             # Determine if player turn should continue
             if bust_test == True:
