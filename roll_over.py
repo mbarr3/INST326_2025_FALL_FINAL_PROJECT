@@ -49,6 +49,9 @@ def rollover(player, total_rolls):
             bust_test = dice_placement(player, hold)
             if bust_test == True:
                 return bust_test
+            else:
+                break
+            
     else:
         print("\nYour yard was empty so you skip to rolling a die.")
     

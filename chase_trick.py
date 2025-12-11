@@ -58,7 +58,7 @@ def chase(player,total_rolls):
             count+=1
             continue
         elif inp == "n":
-            break
+            return False
         else:
             print(f"{inp} is not y or n")
             continue

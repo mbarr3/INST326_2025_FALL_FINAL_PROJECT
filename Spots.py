@@ -87,8 +87,8 @@ def turn(player_list):
         for player in player_list:
             print(f"\n--- {player.name}'s Turn ---")
             print(f"Treats: {player.treats}")
-            print(f"Yard: {sum(player.yard)}\n")
-            print(f"{len(player.completed_cards)} Completed Cards")
+            print(f"Yard: {sum(player.yard)}")
+            print(f"{len(player.completed_cards)} Completed Cards\n")
             print("Your active dog cards are:\n")
             for card in player.active_cards:
                 print(f"{card}\n")
@@ -181,8 +181,14 @@ def turn(player_list):
                 for card in player.active_cards[:]:
                     player.completed_cards.append(card)
                     player.active_cards.remove(card)
+                    # Deal a card to replace the completed card
+                    player.active_cards.append(Card())
                 print("\nCongrats! You fulfilled all your dog cards this turn!")
                 print("Your dog cards have been automatically marked as completed!")
+                print("\nYour updated active dog cards are:\n")
+                for card in player.active_cards:
+                    print(f"{card}\n")
+                continue
                 
             # Score check at the end of every turn to see if the player won
             if len(player.completed_cards) == 6:
