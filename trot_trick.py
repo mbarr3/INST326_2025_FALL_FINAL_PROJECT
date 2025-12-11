@@ -27,14 +27,12 @@ def trot(player, total_rolls):
     """
     
     while True:
-        # TODO Does not print a understandable output (replaced with print loop below unless fix is found)
-        # print(f"Your current cards: {[card for card in player.active_cards]}")
-        
         # Print active cards to the player and their yard
         print("Your current active dog cards are:\n")
         for card in player.active_cards:
             print(f"{card}\n")
         print(f"Your yard: {sum(player.yard)}\n")
+<<<<<<< HEAD
         old_card = input("\nWhich card would you like to remove a die from? ")
         old_value = (input("which die value would like to remove? "))
         
@@ -44,6 +42,15 @@ def trot(player, total_rolls):
         except:
             print("\nInvalid Selection: You did not enter a number value.")
             continue
+=======
+        old_card = input("\nWhich card would you like to remove a die from? (or type 'skip'): ")
+        
+        # Allow skip
+        if old_card.lower() == 'skip':
+            break
+        
+        old_value = int(input("which die value would like to remove? "))
+>>>>>>> daf4ad090aa0a3aa330e782d8e8467c468426373
         
         found = False
         
@@ -61,24 +68,26 @@ def trot(player, total_rolls):
         
 
     
-    while True:
-        new_value = int(input("Choose a new value for this die(1-6): "))
-        
-        try:
-            new_value = int(new_value)    
-        except:
-            print("\nInvalid Selection: You did not enter a number value.")
-            continue
+    # Only do die placement if not skipped
+    if old_card.lower() != 'skip':
+        while True:
+            new_value = int(input("Choose a new value for this die(1-6): "))
             
-        if new_value in range(1,7):
-            break
-        else:
-            print(f"\nInvalid Selection: {new_value} is not a number between 1 and 6")
-            continue
-     
-    bust_test = dp(player, [new_value]) 
-    if bust_test == True:
-        return bust_test
+            try:
+                new_value = int(new_value)    
+            except:
+                print("\nInvalid Selection: You did not enter a number value.")
+                continue
+                
+            if new_value in range(1,7):
+                break
+            else:
+                print(f"\nInvalid Selection: {new_value} is not a number between 1 and 6")
+                continue
+        
+        bust_test = dp(player, [new_value]) 
+        if bust_test == True:
+            return bust_test
 
     print("\nYou now roll 2 dice")
     dice = rr(2)

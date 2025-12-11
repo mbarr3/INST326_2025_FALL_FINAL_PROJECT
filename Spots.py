@@ -28,7 +28,7 @@ def game_setup():
     player_list = []
     # Prompt how many players (1-4)
     while True:
-        player_count = int(input("\nWelcome to Spots! How many players want to play the"\
+        player_count = int(input("\nWelcome to Spots! How many players want to play the "\
             "game? (1-4): "))
         # Validate input
         if not isinstance(player_count, int) or player_count not in range(1,5):
@@ -66,7 +66,7 @@ def turn(player_list):
     Returns:
         None (exits when a player wins)
         
-    Author:
+    Author: Noah Aurdos,
     """
     
     active_tricks = ['chase', 'fetch', 'gobble', 'howl', 'roll over', 'trot']
@@ -192,4 +192,7 @@ def turn(player_list):
 def main():
     player_list = game_setup()
     turn(player_list)
-main()
+
+if __name__ == "__main__":
+    main()
+

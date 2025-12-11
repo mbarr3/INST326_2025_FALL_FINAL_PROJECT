@@ -19,7 +19,17 @@ trick_descriptions = {
 }
 
 def display_tricks():
-    """Show available tricks"""
+    """Print all active tricks and their descriptions.
+
+    Parameters:
+        None
+
+    Returns:
+        bool: Always returns False.
+
+    Side Effects:
+        Prints the list of active tricks to the screen.
+    """
     print("\n" + "="*50)
     for i in range(len(active_tricks)):
         trick = active_tricks[i]
@@ -27,8 +37,21 @@ def display_tricks():
     print("="*50)        
     return False
 
+
 def select_trick():
-    """Let player choose a trick"""
+    """Ask the player to choose a trick by number or name.
+
+    Parameters:
+        None
+
+    Returns:
+        str: The name of the selected trick.
+
+    Side Effects:
+        Prints the list of tricks.
+        Reads user input.
+        Prints error messages if input is invalid.
+    """
     display_tricks()
     
     while True:
@@ -46,14 +69,31 @@ def select_trick():
 
 
 def use_trick(trick_name):
-    """Move trick from active to inactive"""
+    """Mark a trick as used by moving it from active to inactive.
+
+    Parameters:
+        trick_name (str): The name of the trick being used.
+
+    Returns:
+        None
+
+    Side Effects:
+        Modifies global lists
+    """
     if trick_name in active_tricks:
         active_tricks.remove(trick_name)
         inactive_tricks.append(trick_name)
 
 
 def refresh_tricks():
-    """Move all tricks back to active"""
+    """Move all inactive tricks back to the active tricks list.
+
+    Parameters/Returns: None
+    
+    Side Effects:
+        Modifies global lists
+        Prints a message saying all tricks were refreshed.
+    """
     active_tricks.extend(inactive_tricks)
     inactive_tricks.clear()
     print("\nAll tricks refreshed!")
