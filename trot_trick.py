@@ -23,7 +23,7 @@ def trot(player, total_rolls):
         None
         
     Author: Samuel Onakoya
-    Technique:
+    Technique: Desicion/Selection
     """
     
     while True:

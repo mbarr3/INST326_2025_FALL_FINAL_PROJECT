@@ -16,6 +16,7 @@ def howl(player,total_rolls):
         bust_test (bool): True/False returned by bust function in dice placement
         
     Author: Samuel Onakoya
+    Technique: Conditional Expressions
     """
     total_cards = (len(player.active_cards) + len(player.completed_cards))
     if total_cards < 6:
