@@ -31,10 +31,13 @@ def howl(player,total_rolls):
         dice = roll(1)
         total_rolls.extend(dice)
         
+        
         reroll = None
         
         if player.treats > 0:
             while True:
+                # Print dice list to the player
+                print(f"\nYour rolled dice are: {dice}")
                 reroll = input(f"You have {player.treats} treat(s). Would you "\
                     f"like to spend a treat to reroll? (y/n) ").lower()
                 if reroll not in ['yes', 'y', 'no', 'n']:
