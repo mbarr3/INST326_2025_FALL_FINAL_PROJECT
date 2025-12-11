@@ -27,7 +27,14 @@ def trot(player, total_rolls):
     """
     
     while True:
-        print(f"Your current cards: {[card for card in player.active_cards]}")
+        # TODO Does not print a understandable output (replaced with print loop below unless fix is found)
+        # print(f"Your current cards: {[card for card in player.active_cards]}")
+        
+        # Print active cards to the player and their yard
+        print("Your current active dog cards are:\n")
+        for card in player.active_cards:
+            print(f"{card}\n")
+        print(f"Your yard: {sum(player.yard)}\n")
         old_card = input("\nWhich card would you like to remove a die from? ")
         old_value = int(input("which die value would like to remove? "))
         
@@ -49,26 +56,24 @@ def trot(player, total_rolls):
         new_value = int(input("Choose a new value for this die(1-6): "))
         
         try:
-            new_value = int(new_value)
-                
+            new_value = int(new_value)    
         except:
             print("\nInvalid Selection: You did not enter a number value.")
             continue
             
-        if isinstance(new_value, int):
-            if new_value in range(1,7):
-                break
+        if new_value in range(1,7):
+            break
         else:
             print(f"\nInvalid Selection: {new_value} is not a number between 1 and 6")
             continue
      
-    bust_test = dp.dice_placement(player, [new_value]) 
+    bust_test = dp(player, [new_value]) 
     if bust_test == True:
         return bust_test
 
     print("\nYou now roll 2 dice")
-    dice = rr.roll(2)
+    dice = rr(2)
     total_rolls.extend(dice)
     print(f"\nYour dice list is: {dice}")
-    bust_test = dp.dice_placement(player, dice)
+    bust_test = dp(player, dice)
     return bust_test

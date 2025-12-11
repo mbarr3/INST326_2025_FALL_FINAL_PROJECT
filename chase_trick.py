@@ -21,22 +21,23 @@ def chase(player,total_rolls):
     Author: 
     Technique:
     """
+    # Print active cards to the player and their yard
+    print("Your current active dog cards are:\n")
+    for card in player.active_cards:
+        print(f"{card}\n")
+    print(f"Your yard: {sum(player.yard)}\n")
     
+    # Tracker for increase dice amounts
     count = 1
+    
     while True:
-        # Print active cards to the player and their yard
-        print("Your current active dog cards are:\n")
-        for card in player.active_cards:
-            print(f"{card}\n")
-        print(f"Your yard: {sum(player.yard)}\n")
-        
         hold = roll(count)
         total_rolls.extend(hold)
         
         reroll = None
         
         # Print dice list to the player
-        print(f"Your rolled dice are: {hold}")
+        print(f"\nYour rolled dice are: {hold}")
         
         if player.treats > 0:
             while True:
@@ -56,7 +57,7 @@ def chase(player,total_rolls):
         bust_test = dice_placement(player,hold)
         if bust_test == True:
             return bust_test
-        inp = input("Would you like to roll again with one more die than before? (y/n)")
+        inp = input("Would you like to roll again with one more die than before? (y/n) ")
         if inp == "y":
             count+=1
             continue

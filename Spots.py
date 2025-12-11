@@ -120,6 +120,7 @@ def turn(player_list):
             # Prompt player to select their turn action
             while True:
                 trick = (input(f"\nWhat action would you like to take this turn: ").lower())
+                # Remove trick from active tricks list
                 if trick in active_tricks:
                      idx = active_tricks.index(trick) 
                      dead_tricks.append(active_tricks[idx])
@@ -128,6 +129,10 @@ def turn(player_list):
                      break
                 else:
                     print("Invalid selection, select an ACTIVE TRICK!")
+                    
+            # TODO TESTING
+            print(active_tricks)
+            print(dead_tricks)
             
             # Call the trick function and deactivate it
                 # Execute trick based on which one was chosen

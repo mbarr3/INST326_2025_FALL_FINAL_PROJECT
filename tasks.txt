@@ -56,6 +56,8 @@ Magic Methods: (for each class)
 if __name__ == "__main__":             
                     
 
+BUGS:
+- Tricks are not refreshing when only one trick remains
             
 NOTES:
 - Can we delete AurdosFP1.py and trick_tracker.py files?

@@ -29,7 +29,7 @@ def dice_placement(player, dice_list):
     
     for die in dice_list:
         # Print active cards to the player and their yard
-        print("Your current active dog cards are:\n")
+        print("\nYour current active dog cards are:\n")
         for card in player.active_cards:
             print(f"{card}\n")
         print(f"Your yard: {sum(player.yard)}\n")
