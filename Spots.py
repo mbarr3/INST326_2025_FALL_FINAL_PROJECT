@@ -66,7 +66,7 @@ def turn(player_list):
     Returns:
         None (exits when a player wins)
         
-    Author:
+    Author: Noah Aurdos,
     """
     
     active_tricks = ['chase', 'fetch', 'gobble', 'howl', 'roll over', 'trot']
