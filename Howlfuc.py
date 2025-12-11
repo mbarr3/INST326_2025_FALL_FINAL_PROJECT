@@ -1,8 +1,8 @@
 from random_roll import roll
 from diceplacement import dice_placement
-from player_card import Player, Card
+from player_card import Card
 
-def howl(Player):
+def howl(player):
     """Function for the Howl trick
         If player has less than 6 cards call the deal function which will add 
         another card to the player's dog cards. Then the player will roll one die.
@@ -17,9 +17,32 @@ def howl(Player):
         
     Author:
     """
-    if len(Player.active_cards) < 6:
-        Player.active_cards.append(Card())
-    dice = roll(1)
-    bust_test = dice_placement(Player, dice)
-    if bust_test == True:
-        return bust_test
+    if len(player.active_cards) < 6:
+        player.active_cards.append(Card())
+    
+    while True:
+        dice = roll(1)
+        
+        reroll = None
+        
+        # Print dice list to the player
+        print(f"Your rolled dice are: {dice}")
+        
+        if player.treats > 0:
+            while True:
+                reroll = input(f"You have {player.treats}. Would you like to spend "\
+                    f"a treat to reroll? (y/n) ").lower()
+                if reroll != "n" and reroll != "no" and reroll != "y" and reroll != "yes":
+                    print(f"{reroll} is not y or n")
+                    continue
+                else:
+                    break
+        
+        # Restart function if they want to spend a treat  
+        if reroll == "y" or reroll == "yes":
+            player.treats-=1
+            continue
+        
+        bust_test = dice_placement(player, dice)
+        if bust_test == True:
+            return bust_test

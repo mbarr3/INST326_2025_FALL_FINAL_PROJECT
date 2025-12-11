@@ -114,6 +114,7 @@ def turn(player_list):
                         player.completed_cards.append(card)
                         player.active_cards.remove(card)
                         print(f"Completed card: {card.name}")
+                        continue
                     
             
             # Display available tricks

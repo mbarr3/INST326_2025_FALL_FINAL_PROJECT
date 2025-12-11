@@ -23,29 +23,48 @@ def fetch(player):
     Author: Mackenzie Barrett
     Technique: List Comprehension
     """
-    # Call temporary dice_roll function and save returned list to a variable
-    rolled = roll(8)
-    print(f"Rolled dice: {rolled}")
-    # Prompt and validate user input
     while True:
-        chosen_num = input("Choose one of the numbers present in the rolled dice" 
-                           "(you will have to place or bury all dice of that "
-                           "number): ")
-        try:
-            chosen_num = int(chosen_num)
-            
-        except:
-            print("You did not enter a number")
-            
-        if isinstance(chosen_num, int):
-            if chosen_num in range(1,7):
-                if chosen_num in rolled:
+        # Call roll function and save returned list to a variable
+        rolled = roll(8)
+        reroll = None
+        
+        print(f"Rolled dice: {rolled}")
+        
+        if player.treats > 0:
+            while True:
+                reroll = input(f"You have {player.treats}. Would you like to spend "\
+                    f"a treat to reroll? (y/n) ").lower()
+                if reroll != "n" and reroll != "no" and reroll != "y" and reroll != "yes":
+                    print(f"{reroll} is not y or n")
+                    continue
+                else:
                     break
-        else:
-            print(f"{chosen_num} is not present in the rolled dice")
+        
+        # Restart function if they want to spend a treat  
+        if reroll == "y" or reroll == "yes":
+            player.treats-=1
             continue
-    
-    bust_test = dice_placement(player, [die for die in rolled if die == int(chosen_num)])
-    if bust_test == True:
-        return bust_test
+        
+        # Prompt and validate user input
+        while True:
+            chosen_num = input("Choose one of the numbers present in the rolled dice" 
+                            "(you will have to place or bury all dice of that "
+                            "number): ")
+            try:
+                chosen_num = int(chosen_num)
+                
+            except:
+                print("You did not enter a number")
+                
+            if isinstance(chosen_num, int):
+                if chosen_num in range(1,7):
+                    if chosen_num in rolled:
+                        break
+            else:
+                print(f"{chosen_num} is not present in the rolled dice")
+                continue
+        
+        bust_test = dice_placement(player, [die for die in rolled if die == int(chosen_num)])
+        if bust_test == True:
+            return bust_test
     

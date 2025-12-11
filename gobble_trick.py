@@ -14,7 +14,7 @@ def gobble(player):
         Establishes treat and blank_max variables to calculate how many treats
             the player receives
     Returns:
-        None
+        False (bool): False for the sake of the bust test in the turn function
 
     Author: 
     Technique:

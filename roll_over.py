@@ -21,16 +21,27 @@ def rollover(player):
     """
     while True:
         hold = roll(len(player.yard))
-        if player.treats > 1:
-            reroll = input(f"You have {player.treats}. Would you like to spend "\
-                f"a treat to reroll? (y/n)")
-            if reroll == "y" or reroll == "yes":
-                continue
-            elif reroll == "n" or reroll == "no":
-                break
-            else:
-                print(f"{reroll} is not y or n")
-                continue
+        
+        reroll = None
+        
+        # Print dice list to the player
+        print(f"Your rolled dice are: {hold}")
+        
+        if player.treats > 0:
+            while True:
+                reroll = input(f"You have {player.treats}. Would you like to spend "\
+                    f"a treat to reroll? (y/n) ").lower()
+                if reroll != "n" and reroll != "no" and reroll != "y" and reroll != "yes":
+                    print(f"{reroll} is not y or n")
+                    continue
+                else:
+                    break
+        
+        # Restart function if they want to spend a treat  
+        if reroll == "y" or reroll == "yes":
+            player.treats-=1
+            continue
+        
         bust_test = dice_placement(player, hold)
         if bust_test == True:
             return bust_test
