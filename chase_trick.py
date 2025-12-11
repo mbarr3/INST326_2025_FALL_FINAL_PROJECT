@@ -1,7 +1,7 @@
 from random_roll import roll
 from diceplacement import dice_placement
 
-def chase(player,total_rolls):
+def chase(player, total_rolls):
     """Function for the chase trick card
 
     Roll 1 die
@@ -17,12 +17,11 @@ def chase(player,total_rolls):
         Calls roll and dice placement functions
         Saves player input to a variable to determine if they roll again or not
     Returns:
-        None
+        bust_test (bool): True/False from bust function
     Author: Noah Aurdos
-    Technique:
+    Technique: Conditional expressions
     """
     
-    # Tracker for increase dice amounts
     count = 1
     
     while True:
@@ -31,7 +30,6 @@ def chase(player,total_rolls):
         
         reroll = None
         
-        # Print dice list to the player
         print(f"\nDice amount: {count} | Your rolled dice are: {hold}")
         
         if player.treats > 0:
@@ -44,18 +42,19 @@ def chase(player,total_rolls):
                 else:
                     break
         
-        # Restart function if they want to spend a treat  
         if reroll == "y" or reroll == "yes":
-            player.treats-=1
+            player.treats -= 1
             continue
             
-        bust_test = dice_placement(player,hold)
-        if bust_test == True:
-            return bust_test
+        bust_test = dice_placement(player, hold)
+
+        if bust_test:
+            return True
+        
         inp = input(f"Would you like to roll again with {count+1} dice this "\
             f"time? (y/n) ")
         if inp == "y":
-            count+=1
+            count += 1
             continue
         elif inp == "n":
             break
@@ -63,7 +62,4 @@ def chase(player,total_rolls):
             print(f"{inp} is not y or n")
             continue
     
-    
-        
-    
-
+    return False if bust_test is None else bust_test
