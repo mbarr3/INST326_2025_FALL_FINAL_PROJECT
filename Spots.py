@@ -78,7 +78,7 @@ def turn(player_list):
     'fetch': "Roll 8 dice. Choose a number you rolled, and place or bury all dice of that number.Discard the rest.", 
     'gobble': "Take 7 treats. Then return 1 treat for each spot in your highest unfilled space.", 
     'howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack. Then roll 1 die.", 
-    'roll over': "Roll all your buried dice and then place or rebury them. Then you may roll 2 dice.", 
+    'roll over': "Roll all your buried dice and then place or rebury them. Then you may roll 1 die.", 
     'trot': "You may move 1 die on your dog cards to any other space, changing the number if needed. Then roll 2 dice."
     }
 
@@ -134,10 +134,6 @@ def turn(player_list):
                      break
                 else:
                     print("Invalid selection, select an ACTIVE TRICK!")
-                    
-            # TODO TESTING
-            print(active_tricks)
-            print(dead_tricks)
             
             # Call the trick function and deactivate it
                 # Execute trick based on which one was chosen
@@ -159,15 +155,16 @@ def turn(player_list):
             elif trick == ('trot'):
                 bust_test = trot(player, total_rolls)
                 
-            # Determine if player turn should continue
-            if bust_test == True:
-                continue
                 
             # Check if all tricks used, refresh if needed
             if len(active_tricks) == 1:
                 active_tricks.extend(dead_tricks)
                 dead_tricks.clear()
                 print("\nAll tricks refreshed!")
+                
+            # Determine if player turn should continue
+            if bust_test == True:
+                continue
             
             # Check if all the player's dog cards are completed
             fulfilled_count = 0

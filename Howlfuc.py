@@ -15,13 +15,10 @@ def howl(player,total_rolls):
     Returns:
         bust_test (bool): True/False returned by bust function in dice placement
         
-    Author:
+    Author: Samuel Onakoya
     """
     total_cards = (len(player.active_cards) + len(player.completed_cards))
     if total_cards < 6:
-        # TODO TESTING
-        print(f"Player active cards count: {len(player.active_cards)}")
-        print(f"Player total cards: {total_cards}")
         player.active_cards.append(Card())
         # Print the players updated active dog cards 
         print("Your active dog cards are:\n")
@@ -29,18 +26,12 @@ def howl(player,total_rolls):
             print(f"{card}\n")
     else:
         print("You already have 6 dog cards so you were not dealt a new card.")
-        # TODO TESTING
-        print(f"Player active cards count: {len(player.active_cards)}")
-        print(f"Player total cards: {total_cards}")
         
     while True:
         dice = roll(1)
         total_rolls.extend(dice)
         
         reroll = None
-        
-        # Print dice list to the player
-        print(f"\nYour rolled dice are: {dice}")
         
         if player.treats > 0:
             while True:
