@@ -32,17 +32,6 @@ def trot(player, total_rolls):
         for card in player.active_cards:
             print(f"{card}\n")
         print(f"Your yard: {sum(player.yard)}\n")
-<<<<<<< HEAD
-        old_card = input("\nWhich card would you like to remove a die from? ")
-        old_value = (input("which die value would like to remove? "))
-        
-        # Validate user input
-        try:
-            old_value = int(old_value)
-        except:
-            print("\nInvalid Selection: You did not enter a number value.")
-            continue
-=======
         old_card = input("\nWhich card would you like to remove a die from? (or type 'skip'): ")
         
         # Allow skip
@@ -50,7 +39,6 @@ def trot(player, total_rolls):
             break
         
         old_value = int(input("which die value would like to remove? "))
->>>>>>> daf4ad090aa0a3aa330e782d8e8467c468426373
         
         found = False
         

@@ -22,7 +22,7 @@ def game_setup():
     Returns:
         player_list (list of player obj)
         
-    Author: Mackenzie Barrett
+    Author: Sean Tully
     Technique: Key function
     """
     player_list = []
@@ -66,7 +66,8 @@ def turn(player_list):
     Returns:
         None (exits when a player wins)
         
-    Author: Noah Aurdos,
+    Author: Noah Aurdos
+    Technique: 
     """
     
     active_tricks = ['chase', 'fetch', 'gobble', 'howl', 'roll over', 'trot']

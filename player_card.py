@@ -26,6 +26,7 @@ class Player:
             object's active_cards list  
         
         Author: Mackenzie Barrett 
+        Technique: Composition of two custom classes
         """
         self.name = name
         # List of Card class objects
