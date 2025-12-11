@@ -46,8 +46,6 @@ class Card:
         name (str): name of the dog card
         req_dice (dict): key is a die requirement and the value is a boolean of 
                         if it is fulfilled or not
-    
-    Author:
     """
     def __init__(self):
         """Initialize new Card class object
@@ -99,6 +97,7 @@ class Card:
             str: string containing the name of the Card obj and its requirements
             
         Author: Sean Tully
+        Technique: Magic method
         """
         back = []
         handoff = ""

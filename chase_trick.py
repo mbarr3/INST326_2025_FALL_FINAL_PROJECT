@@ -18,7 +18,7 @@ def chase(player,total_rolls):
         Saves player input to a variable to determine if they roll again or not
     Returns:
         None
-    Author: 
+    Author: Noah Aurdos
     Technique:
     """
     

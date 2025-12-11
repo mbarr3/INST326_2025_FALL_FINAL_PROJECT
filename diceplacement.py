@@ -24,7 +24,6 @@ def dice_placement(player, dice_list):
         bust_test (bool): True/False returned by bust function
         
     Author: Mackenzie Barrett
-    Technique:
     """
     
     for die in dice_list:
