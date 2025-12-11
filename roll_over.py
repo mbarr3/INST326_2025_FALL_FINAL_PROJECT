@@ -29,7 +29,7 @@ def rollover(player):
         
         if player.treats > 0:
             while True:
-                reroll = input(f"You have {player.treats}. Would you like to spend "\
+                reroll = input(f"You have {player.treats} treat(s). Would you like to spend "\
                     f"a treat to reroll? (y/n) ").lower()
                 if reroll not in ['yes', 'y', 'no', 'n']:
                     print(f"{reroll} is not y or n")
@@ -48,6 +48,5 @@ def rollover(player):
         print("\nNow you get to roll one die\n")
         hold = roll(1)
         bust_test = dice_placement(player, hold)
-        if bust_test == True:
-            return bust_test
+        return bust_test
     

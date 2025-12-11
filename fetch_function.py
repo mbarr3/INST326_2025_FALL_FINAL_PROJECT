@@ -32,7 +32,7 @@ def fetch(player):
         
         if player.treats > 0:
             while True:
-                reroll = input(f"You have {player.treats}. Would you like to spend "\
+                reroll = input(f"You have {player.treats} treat(s). Would you like to spend "\
                     f"a treat to reroll? (y/n) ").lower()
                 if reroll not in ['yes', 'y', 'no', 'n']:
                     print(f"{reroll} is not y or n")
@@ -55,6 +55,7 @@ def fetch(player):
                 
             except:
                 print("You did not enter a number")
+                continue
                 
             if isinstance(chosen_num, int):
                 if chosen_num in range(1,7):
@@ -64,6 +65,9 @@ def fetch(player):
                 print(f"{chosen_num} is not present in the rolled dice")
                 continue
         
-        bust_test = dice_placement(player, [die for die in rolled if die == int(chosen_num)])
+        dice_list = [die for die in rolled if die == chosen_num]
+        
+        print(f"Your dice list is: {dice_list}")
+        
+        bust_test = dice_placement(player, dice_list)
         return bust_test
-    
