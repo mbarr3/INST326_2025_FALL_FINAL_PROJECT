@@ -58,3 +58,7 @@ if __name__ == "__main__":
 
             
 NOTES:
+- Can we delete AurdosFP1.py and trick_tracker.py files?
+- There seem to be some unused imports in our Spots file, can we get rid of those?
+- We need to write our README and annotated bibliography (info in the final project description in canvas)
+- Need to add if __name__ == "__main__"
