@@ -34,7 +34,7 @@ def fetch(player):
             while True:
                 reroll = input(f"You have {player.treats}. Would you like to spend "\
                     f"a treat to reroll? (y/n) ").lower()
-                if reroll != "n" and reroll != "no" and reroll != "y" and reroll != "yes":
+                if reroll not in ['yes', 'y', 'no', 'n']:
                     print(f"{reroll} is not y or n")
                     continue
                 else:
@@ -65,6 +65,5 @@ def fetch(player):
                 continue
         
         bust_test = dice_placement(player, [die for die in rolled if die == int(chosen_num)])
-        if bust_test == True:
-            return bust_test
+        return bust_test
     
