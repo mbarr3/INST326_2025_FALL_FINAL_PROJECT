@@ -79,7 +79,7 @@ class Card:
         Returns:
             bool (True/False): True if a card is fulfilled, False if it is not
 
-        Author: 
+        Author: Mackenzie Barrett
         """
         if False not in self.req_dice.values():
             return True
