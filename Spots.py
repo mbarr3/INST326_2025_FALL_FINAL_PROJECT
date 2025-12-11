@@ -76,7 +76,7 @@ def turn(player_list):
     
     trick_descriptions = {
     'chase': "Roll 1 die. You may repeat this trick as many times as you want but each time roll 1 more die than you just did (2, 3, 4...)", 
-    'fetch': "Roll 8 dice. Choose a number you rolled, and place or bury all dice of that number.Discard the rest.", 
+    'fetch': "Roll 8 dice. Choose a number you rolled, and place or bury all dice of that number. Discard the rest.", 
     'gobble': "Take 7 treats. Then return 1 treat for each spot in your highest unfilled space.", 
     'howl': "If you have fewer than 6 dog cards, draw the top card of the dog deck and add it to your pack. Then roll 1 die.", 
     'roll over': "Roll all your buried dice and then place or rebury them. Then you may roll 1 die.", 
@@ -88,6 +88,7 @@ def turn(player_list):
             print(f"\n--- {player.name}'s Turn ---")
             print(f"Treats: {player.treats}")
             print(f"Yard: {sum(player.yard)}\n")
+            print(f"{len(player.completed_cards)} Completed Cards")
             print("Your active dog cards are:\n")
             for card in player.active_cards:
                 print(f"{card}\n")
@@ -120,12 +121,13 @@ def turn(player_list):
             print("\n" + "="*50)
             for i in range(len(active_tricks)):
                 trick = active_tricks[i]
-                print(f"{i+1}. {trick.capitalize()}: {trick_descriptions[trick]}")
+                print(f"{trick.capitalize()}: {trick_descriptions[trick]}")
                 print("="*50)        
 
             # Prompt player to select their turn action
             while True:
-                trick = (input(f"\nWhat action would you like to take this turn: ").lower())
+                trick = (input(f"\nEnter the name of the trick you would like "\
+                    f"to perform this turn: ").lower())
                 # Move trick from active tricks list to dead_tricks list
                 if trick in active_tricks:
                      idx = active_tricks.index(trick) 
@@ -181,9 +183,8 @@ def turn(player_list):
                     player.active_cards.remove(card)
                 print("\nCongrats! You fulfilled all your dog cards this turn!")
                 print("Your dog cards have been automatically marked as completed!")
-    
-        # Score check at the end of every round to see if any player won
-        for player in player_list:
+                
+            # Score check at the end of every turn to see if the player won
             if len(player.completed_cards) == 6:
                 print(f"\n{'='*50}")
                 print(f"GAME OVER! {player.name} wins with 6 completed cards!")

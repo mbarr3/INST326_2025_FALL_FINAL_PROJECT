@@ -64,7 +64,6 @@ class Card:
                     "Archie", "Missy", "Lottie", "Poppy", "Honey", "Lady", 
                     "Ollie", "Diesel", "Duke", "Sadie"]
         self.name = random.choice(card_names)
-        card_names.remove(self.name)
         
         # Assign a random number of dice between 1 and 4 to the card and then
         # assign random values between 1 and 6 to each die

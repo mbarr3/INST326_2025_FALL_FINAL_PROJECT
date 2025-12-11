@@ -32,7 +32,7 @@ def chase(player,total_rolls):
         reroll = None
         
         # Print dice list to the player
-        print(f"\nYour rolled dice are: {hold}")
+        print(f"\nDice amount: {count} | Your rolled dice are: {hold}")
         
         if player.treats > 0:
             while True:
@@ -52,7 +52,8 @@ def chase(player,total_rolls):
         bust_test = dice_placement(player,hold)
         if bust_test == True:
             return bust_test
-        inp = input("Would you like to roll again with one more die than before? (y/n) ")
+        inp = input(f"Would you like to roll again with {count+1} dice this "\
+            f"time? (y/n) ")
         if inp == "y":
             count+=1
             continue

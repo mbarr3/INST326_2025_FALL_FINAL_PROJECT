@@ -77,7 +77,7 @@ def trot(player, total_rolls):
         if bust_test == True:
             return bust_test
 
-    print("\nYou now roll 2 dice")
+    print("\n***~~~Now you roll two dice~~~***")
     dice = rr(2)
     total_rolls.extend(dice)
     print(f"\nYour dice list is: {dice}")
