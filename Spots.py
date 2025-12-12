@@ -187,8 +187,9 @@ def turn(player_list):
                 print("Your dog cards have been automatically marked as completed!")
     
         # Score check at the end of every round to see if any player won
+        game_over = False
+
         for player in player_list:
-            game_over = False
             if len(player.completed_cards) == 6:
                 print(f"\n{'='*50}")
                 print(f"GAME OVER! {player.name} wins with 6 completed cards!")
