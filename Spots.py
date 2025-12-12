@@ -88,7 +88,8 @@ def turn(player_list):
     'roll over': "Roll all your buried dice and then place or rebury them. Then you may roll 1 die.", 
     'trot': "You may move 1 die on your dog cards to any other space, changing the number if needed. Then roll 2 dice."
     }
-
+    
+    winner = None
     while True:
         for player in player_list:
             print(f"\n--- {player.name}'s Turn ---")
@@ -115,8 +116,10 @@ def turn(player_list):
                         player.completed_cards.append(card)
                         player.active_cards.remove(card)
                         print(f"Completed card: {card.name}")
-                        # Deal a card to replace the completed card
-                        player.active_cards.append(Card())
+                        # Deal a card to replace the completed card if applicable
+                        total_cards = (len(player.active_cards) + len(player.completed_cards))
+                        if total_cards < 6:
+                            player.active_cards.append(Card())
                     print("Your updated active dog cards are:\n")
                     for card in player.active_cards:
                         print(f"{card}\n")
@@ -136,11 +139,11 @@ def turn(player_list):
                     f"to perform this turn: ").lower())
                 # Move trick from active tricks list to dead_tricks list
                 if trick in active_tricks:
-                     idx = active_tricks.index(trick) 
-                     dead_tricks.append(active_tricks[idx])
-                     active_tricks.remove(trick)
+                        idx = active_tricks.index(trick) 
+                        dead_tricks.append(active_tricks[idx])
+                        active_tricks.remove(trick)
 
-                     break
+                        break
                 else:
                     print("Invalid selection, select an ACTIVE TRICK!")
             
@@ -187,8 +190,10 @@ def turn(player_list):
                 for card in player.active_cards[:]:
                     player.completed_cards.append(card)
                     player.active_cards.remove(card)
-                    # Deal a card to replace the completed card
-                    player.active_cards.append(Card())
+                    # Deal a card to replace the completed card if applicable
+                    total_cards = (len(player.active_cards) + len(player.completed_cards))
+                    if total_cards < 6:
+                        player.active_cards.append(Card())
                 print("\nCongrats! You fulfilled all your dog cards this turn!")
                 print("Your dog cards have been automatically marked as completed!")
                 print("\nYour updated active dog cards are:\n")
@@ -197,15 +202,22 @@ def turn(player_list):
                 continue
                 
             # Score check at the end of every turn to see if the player won
-            if len(player.completed_cards) == 6:
-                print(f"\n{'='*50}")
-                print(f"GAME OVER! {player.name} wins with 6 completed cards!")
-                print(f"{'='*50}")
+            if len(player.completed_cards) == 1:
+                winner = player.name
+                return winner
+            else:
+                continue
+            
+def game_over(winner):
+    print(f"\n{'='*50}")
+    print(f"GAME OVER! {winner} wins with 6 completed cards!")
+    print(f"{'='*50}")
                 
                 
 def main():
     player_list = game_setup()
-    turn(player_list)
+    winner = turn(player_list)
+    game_over(winner)
 
 if __name__ == "__main__":
     main()
