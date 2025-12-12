@@ -16,8 +16,9 @@ def gobble(player):
     Returns:
         False (bool): False for the sake of the bust test in the turn function
 
-    Author: 
-    Technique:
+    Author: Sean Tully 
+    Technique: f-strings containing expressions
+
     """
     treat = 7
     blank_max = 0

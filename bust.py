@@ -11,7 +11,7 @@ def bust (player):
         Bool: True if the player has busted; False if they player has not busted
 
     Author: Sean Tully
-    Technique:
+    Technique: None
     """
     total = 0
     for die in player.yard:
