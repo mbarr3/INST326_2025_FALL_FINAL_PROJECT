@@ -51,15 +51,20 @@ def chase(player, total_rolls):
         if bust_test:
             return True
         
-        inp = input(f"Would you like to roll again with {count+1} dice this "\
-            f"time? (y/n) ")
-        if inp == "y":
+        # Validate user input
+        while True:
+            inp = input(f"Would you like to roll again with {count+1} dice this"\
+                f" time? (y/n) ")
+            if inp not in ['yes', 'y', 'no', 'n']:
+                print(f"{inp} is not y or n")
+                continue
+            else:
+                break
+            
+        if inp == "y" or inp == "yes":
             count += 1
             continue
-        elif inp == "n":
+        elif inp == "n" or inp == "no":
             break
-        else:
-            print(f"{inp} is not y or n")
-            continue
     
-    return False if bust_test is None else bust_test
+    return False

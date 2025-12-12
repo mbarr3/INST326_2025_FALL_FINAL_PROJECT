@@ -23,7 +23,7 @@ def trot(player, total_rolls):
         None
         
     Author: Samuel Onakoya
-    Technique: Keyword Arguments
+    Technique: Desicion/Selection
     """
     
     while True:
@@ -32,7 +32,8 @@ def trot(player, total_rolls):
         for card in player.active_cards:
             print(f"{card}\n")
         print(f"Your yard: {sum(player.yard)}\n")
-        old_card = input("\nWhich card would you like to remove a die from? (or type 'skip'): ")
+        old_card = input("\nEnter the name of the card you would like to remove"\
+            " a die from (or type 'skip'): ")
         
         # Allow skip
         if old_card.lower() == 'skip':
