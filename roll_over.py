@@ -23,7 +23,7 @@ def rollover(player, total_rolls):
     if len(player.yard) > 0:
         while True:
             hold = roll(len(player.yard))
-            player.yard = list()
+            
             total_rolls.extend(hold)
             
             reroll = None
@@ -40,6 +40,9 @@ def rollover(player, total_rolls):
                         continue
                     else:
                         break
+            
+            # Update player yard
+            player.yard = list()
             
             # Restart function if they want to spend a treat  
             if reroll == "y" or reroll == "yes":

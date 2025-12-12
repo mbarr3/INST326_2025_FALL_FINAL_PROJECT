@@ -28,11 +28,17 @@ def game_setup():
     player_list = []
     # Prompt how many players (1-4)
     while True:
-        player_count = int(input("\nWelcome to Spots! How many players want to play the "\
-            "game? (1-4): "))
+        player_count = input("\nWelcome to Spots! How many players want to play"\
+            " the game? (1-4): ")
         # Validate input
-        if not isinstance(player_count, int) or player_count not in range(1,5):
-            print(f"{player_count} is not a valid option between 1 and 4")
+        try:
+            player_count = int(player_count)
+        except ValueError:
+            print(f"Invalid Input: {player_count} is not a number.")
+            continue
+        if player_count not in range(1,5):
+            print(f"Invalid Input: {player_count} is not a valid option between"\
+                " 1 and 4")
             continue
         # Initiate Player class for each player 
         count = 1
