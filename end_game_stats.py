@@ -3,6 +3,14 @@ import matplotlib.pyplot as plt
 
 
 def stats(total_rolls):
+    """_summary_
+
+    Args:
+        total_rolls (List): Takes a list of intigers and converts it into a DF
+        and generates a bar graph to show the roll values rolled the whole game
+        
+    Author: Sean Tully
+    """
     df = pd.DataFrame(total_rolls, columns=["Roll Value"])
     counts = df["Roll Value"].value_counts().sort_index()
     plt.figure(figsize=(8,5))

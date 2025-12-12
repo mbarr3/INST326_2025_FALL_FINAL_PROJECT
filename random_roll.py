@@ -12,7 +12,7 @@ def roll(rolls):
     Returns:
         back (list): List with all the randomly rolled dice values in each index
         
-    Author:
+    Author: Sean Tully
     """
     back = list()
     count = 0
