@@ -1,4 +1,5 @@
 import random
+from end_game_stats import stats
 from fetch_function import fetch
 from gobble_trick import gobble
 from Howlfuc import howl
@@ -200,4 +201,5 @@ def turn(player_list):
 def main():
     player_list = game_setup()
     turn(player_list)
+    stats(total_rolls)
 main()
