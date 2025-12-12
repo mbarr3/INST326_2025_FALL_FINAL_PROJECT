@@ -48,7 +48,7 @@ def chase(player, total_rolls):
             
         bust_test = dice_placement(player, hold)
 
-        if bust_test:
+        if bust_test == True:
             return True
         
         # Validate user input
