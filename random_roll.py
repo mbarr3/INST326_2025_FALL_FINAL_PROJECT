@@ -13,6 +13,7 @@ def roll(rolls):
         back (list): List with all the randomly rolled dice values in each index
         
     Author: Sean Tully
+     Technique: None
     """
     back = list()
     count = 0
