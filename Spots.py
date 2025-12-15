@@ -16,7 +16,8 @@ def game_setup():
         Creates player list to store player class objects
         Sorts the player_list in descending order by player.yard value
     Returns:
-        player_list (list of player obj)
+        player_list (list of player obj): sorted list of player class obj
+            sorted in descending order of player yard attribute value
         
     Author: Samuel Onakoya
     Technique: Key function
@@ -72,6 +73,7 @@ def turn(player_list):
     Returns:
         score_tracker (dict): Player names as keys with their completed card int
             as the value
+        total_rolls (list): list of all dice rolled throughout the game
         
     Author: Noah Aurdos
     Technique: f-strings containing expressions
@@ -249,7 +251,7 @@ def game_end(score_tracker):
         player (Player obj): provides Player attributes yard and active_cards which
             provides Card class obj attributes
     Side effects:
-        Prints message with player obj name atttribute of the winnerS
+        Prints message with player obj name atttribute of the winners
     
     Author: Samuel Onakoya
     """
