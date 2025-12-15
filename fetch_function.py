@@ -28,6 +28,7 @@ def fetch(player, total_rolls):
     while True:
         # Call roll function and save returned list to a variable
         rolled = roll(8)
+        total_rolls.extend(rolled)
         reroll = None
         
         print(f"\nRolled dice: {rolled}")
@@ -46,8 +47,6 @@ def fetch(player, total_rolls):
         if reroll == "y" or reroll == "yes":
             player.treats-=1
             continue
-        
-        total_rolls.extend(rolled)
         
         # Prompt and validate user input
         while True:

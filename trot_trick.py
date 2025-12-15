@@ -105,6 +105,5 @@ def trot(player, total_rolls):
                 player.treats -= 1
                 continue
         
-        total_rolls.extend(dice)
         bust_test = dp(player, dice)
         return bust_test

@@ -42,6 +42,7 @@ def howl(player,total_rolls):
     print("\n***~~~Now you roll one die~~~***")  
     while True:
         dice = roll(1)
+        total_rolls.extend(dice)
         reroll = None
         
         if player.treats > 0:
@@ -60,8 +61,6 @@ def howl(player,total_rolls):
         if reroll == "y" or reroll == "yes":
             player.treats-=1
             continue
-        
-        total_rolls.extend(dice)
         
         bust_test = dice_placement(player, dice)
         return bust_test

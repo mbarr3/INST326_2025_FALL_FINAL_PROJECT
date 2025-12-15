@@ -36,7 +36,7 @@ def rollover(player, total_rolls):
     if len(player.yard) > 0:
         while True:
             hold = roll(len(player.yard))
-            
+            total_rolls.extend(hold)
             reroll = None
             
             # Print dice list to the player
@@ -57,8 +57,6 @@ def rollover(player, total_rolls):
                 player.treats-=1
                 continue
             
-            total_rolls.extend(hold)
-            
             # Update player yard
             player.yard = list()
         
@@ -74,6 +72,7 @@ def rollover(player, total_rolls):
     print("\n***~~~Now you roll one die~~~***")
     while True:
         hold = roll(1)
+        total_rolls.extend(hold)
         print(f"\nYour rolled dice are: {hold}")
         if player.treats > 0:
             while True:
@@ -90,7 +89,6 @@ def rollover(player, total_rolls):
             player.treats-=1
             continue
         
-        total_rolls.extend(hold)
         bust_test = dice_placement(player, hold)
         return bust_test
     

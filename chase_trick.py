@@ -30,7 +30,7 @@ def chase(player, total_rolls):
     
     while True:
         hold = roll(count)
-        
+        total_rolls.extend(hold)
         reroll = None
         
         print(f"\nDice amount: {count} | Your rolled dice are: {hold}")
@@ -48,8 +48,6 @@ def chase(player, total_rolls):
         if reroll == "y" or reroll == "yes":
             player.treats -= 1
             continue
-            
-        total_rolls.extend(hold)
             
         bust_test = dice_placement(player, hold)
 

@@ -36,9 +36,22 @@ class Player:
         self.yard = [random.randint(1,6)]
         # Deal initial 2 cards to the player
         for card in range(2):
-            self.active_cards.append(Card())
+            while True:
+                dupe = False
+                new_card = Card()
+                if len(self.active_cards) > 0:
+                    for dog in self.active_cards:
+                        if new_card.name == dog.name:
+                            dupe = True
+                    if dupe == True:
+                        continue
+                    else:
+                        self.active_cards.append(new_card)
+                        break
+                else:
+                    self.active_cards.append(new_card)
+                    break
             
-    
 class Card:
     """Represents a dog card including the card's name and dice requirements
     
