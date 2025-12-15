@@ -1,4 +1,3 @@
-import random
 from end_game_stats import stats
 from fetch_function import fetch
 from gobble_trick import gobble
@@ -7,8 +6,6 @@ from roll_over import rollover
 from trot_trick import trot
 from chase_trick import chase
 from player_card import Player, Card            
-
-
 
 def game_setup():
     """Initial set up for the game, establishing number and names of players,
@@ -127,7 +124,18 @@ def turn(player_list):
                         print(f"Completed card: {card.name}")
                         # Deal player a replacement card if applicable
                         if total_cards < 6:
-                            player.active_cards.append(Card())
+                            while True:
+                                dupe = False
+                                new_card = Card()
+                                for dog in player.active_cards:
+                                    if new_card.name == dog.name:
+                                        dupe = True
+                                        break
+                                if dupe == True:
+                                    continue
+                                else:
+                                    player.active_cards.append(new_card)
+                                    break
                     # Break out of player turn loop if player completed 6 cards  
                     if len(player.completed_cards) >= 6:
                         print(f"{player.name} has completed 6 cards")
@@ -208,7 +216,18 @@ def turn(player_list):
                     player.active_cards.remove(card)
                     # Deal player a replacement card if applicable
                     if total_cards < 6:
-                        player.active_cards.append(Card())
+                        while True:
+                            dupe = False
+                            new_card = Card()
+                            for dog in player.active_cards:
+                                if new_card.name == dog.name:
+                                    dupe = True
+                                    break
+                            if dupe == True:
+                                continue
+                            else:
+                                player.active_cards.append(new_card)
+                                break
                 print("\nCongrats! You fulfilled all your dog cards this turn!")
                 # Check if player completed 6 cards
                 if len(player.completed_cards) >= 6:

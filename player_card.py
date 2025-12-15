@@ -39,6 +39,7 @@ class Player:
             while True:
                 dupe = False
                 new_card = Card()
+                # Prevent a player from having 2 dogs with the same name
                 if len(self.active_cards) > 0:
                     for dog in self.active_cards:
                         if new_card.name == dog.name:
