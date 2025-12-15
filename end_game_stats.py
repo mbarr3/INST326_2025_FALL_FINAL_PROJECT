@@ -3,20 +3,16 @@ import matplotlib.pyplot as plt
 
 
 def stats(total_rolls):
-    """
-    Summary:
-        Takes a list of intigers and converts it into a DF
-        and generates a bar graph to show the roll values rolled the whole game
+    """Takes a list of ints and converts it into a DFand generates a bar 
+    graph to show the roll values rolled the whole game
 
     Args:
         total_rolls (List): List of ints to get turned into a bar graph
-        
     Side Effects: 
         prints bar graph of rolls to the user
     
     Author: Sean Tully
-    Skill: visualizing data with pyplot or seaborn & Pandas DataFrames
-
+    Skill: visualizing data with pyplot
     """
     df = pd.DataFrame(total_rolls, columns=["Roll Value"])
     counts = df["Roll Value"].value_counts().sort_index()

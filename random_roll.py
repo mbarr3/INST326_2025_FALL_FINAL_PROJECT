@@ -6,14 +6,10 @@ def roll(rolls):
     
     Args:
         rolls (int): The amount of random dice rolls you would like
-    Side effects:
-        Establishes back and count variables to track how many die still need
-            to be rolled and storing the values that are rolled
     Returns:
         back (list): List with all the randomly rolled dice values in each index
         
     Author: Sean Tully
-     Technique: None
     """
     back = list()
     count = 0

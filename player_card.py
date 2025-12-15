@@ -54,7 +54,7 @@ class Card:
             Sets the attributes name and req_dice
             Establishes list card_names
         
-        Author: 
+        Author: Noah Aurdos
         """
         # List of names for dog cards 
         # TODO Find a way to alter the list to avoid duplicate dog names?
@@ -62,7 +62,10 @@ class Card:
                     "Willow", "Finn", "Molly", "Cooper", "Nala", "Rocky", 
                     "Coco", "Milo", "Cookie", "Buster", "Roxy", "Rex", "Jack",
                     "Archie", "Missy", "Lottie", "Poppy", "Honey", "Lady", 
-                    "Ollie", "Diesel", "Duke", "Sadie"]
+                    "Ollie", "Diesel", "Duke", "Sadie", "Caesar", "Dougie", 
+                    "Comet", "Kaya", "Fitz", "Ginger", "Ranger", "Bailey",
+                    "Flash", "Peach", "Ripley", "Tank", "Thumper", "Bumper",
+                    "River", "Shadow", "Zeke"]
         
         # TODO NEED TO FIX PLAYER HAVING DOGS WITH SAME NAME
         self.name = random.choice(card_names)
@@ -89,10 +92,6 @@ class Card:
     
     def __str__(self):
         """Informal representation of a Card class object
-        
-        Side effects:
-            establishes back and handoff variables to append strings for each
-            required element of the Card obj
             
         Returns:
             str: string containing the name of the Card obj and its requirements

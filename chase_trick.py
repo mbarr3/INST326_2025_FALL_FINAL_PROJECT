@@ -12,21 +12,24 @@ def chase(player, total_rolls):
     Args: 
         player (Player obj): provides Player attributes yard and active_cards which
             provides Card class obj attributes
+        total_rolls (list): list of all dice rolled throughout the game 
     Side effects:
-        Establishes a count variable to track how many die the player has to roll
-        Calls roll and dice placement functions
-        Saves player input to a variable to determine if they roll again or not
+        Prints rolled dice to the terminal
+        If applicable, prints prompt to the terminal to spend a treat or not
+        If input error prints error message to the terminal
+        Updates player obj treat attribute if applicable 
+        Adds rolled dice to total_rolls
+        Prints prompt to roll again or not
     Returns:
-        bust_test (bool): True/False from bust function
+        bust_test (bool): True or False as returned by the bust function
+        
     Author: Noah Aurdos
-    Technique: Conditional expressions
     """
     
     count = 1
     
     while True:
         hold = roll(count)
-        total_rolls.extend(hold)
         
         reroll = None
         
@@ -45,6 +48,8 @@ def chase(player, total_rolls):
         if reroll == "y" or reroll == "yes":
             player.treats -= 1
             continue
+            
+        total_rolls.extend(hold)
             
         bust_test = dice_placement(player, hold)
 

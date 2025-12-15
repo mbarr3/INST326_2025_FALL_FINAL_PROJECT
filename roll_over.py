@@ -11,20 +11,31 @@ def rollover(player, total_rolls):
     Args: 
         player (Player obj): provides Player attributes yard and active_cards which
             provides Card class obj attributes
+        total_rolls (list): list of all dice rolled throughout the game
     Side effects:
-        Calls roll and dice placement functions
+        Prints rolled dice to terminal
+        If applicable, prints prompt to the terminal to spend a treat or not
+        If input error prints error message to the terminal
+        Updates player obj treat attribute if applicable
+        If applicable, sets player yard attribute to empty list
+        If player yard attribute empty:
+            prints info message to terminal
+        Adds rolled dice to total_rolls
+        Prints info message to player that they will roll 1 die
+        Prints rolled die 
+        If applicable, prints prompt to the terminal to spend a treat or not
+        If input error prints error message to the terminal
+        Updates player obj treat attribute if applicable
+        Adds rolled dice to total_rolls
     Returns:
-        bust_test (bool): True/False from bust function 
+        bust_test (bool): True or False as returned by the bust function 
         
-    Author: 
-    Technique:
+    Author: Mackenzie Barrett
     """
     
     if len(player.yard) > 0:
         while True:
             hold = roll(len(player.yard))
-            
-            total_rolls.extend(hold)
             
             reroll = None
             
@@ -46,6 +57,8 @@ def rollover(player, total_rolls):
                 player.treats-=1
                 continue
             
+            total_rolls.extend(hold)
+            
             # Update player yard
             player.yard = list()
         
@@ -59,17 +72,25 @@ def rollover(player, total_rolls):
         print("\nYour yard was empty so you skip to rolling a die.")
     
     print("\n***~~~Now you roll one die~~~***")
-    hold = roll(1)
-    print(f"\nYour rolled dice are: {hold}")
-    if player.treats > 0:
-        while True:
-            reroll = input(f"You have {player.treats} treat(s). Would you like to spend "\
-                f"a treat to reroll? (y/n) ").lower()
-            if reroll not in ['yes', 'y', 'no', 'n']:
-                print(f"{reroll} is not y or n")
-                continue
-            else:
-                break
-    bust_test = dice_placement(player, hold)
-    return bust_test
+    while True:
+        hold = roll(1)
+        print(f"\nYour rolled dice are: {hold}")
+        if player.treats > 0:
+            while True:
+                reroll = input(f"You have {player.treats} treat(s). Would you like to spend "\
+                    f"a treat to reroll? (y/n) ").lower()
+                if reroll not in ['yes', 'y', 'no', 'n']:
+                    print(f"{reroll} is not y or n")
+                    continue
+                else:
+                    break
+        
+        # Restart loop if they want to spend a treat  
+        if reroll == "y" or reroll == "yes":
+            player.treats-=1
+            continue
+        
+        total_rolls.extend(hold)
+        bust_test = dice_placement(player, hold)
+        return bust_test
     

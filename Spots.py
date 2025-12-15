@@ -6,11 +6,9 @@ from Howlfuc import howl
 from roll_over import rollover
 from trot_trick import trot
 from chase_trick import chase
-from diceplacement import dice_placement
-from trick_tracker import active_tricks, inactive_tricks, display_tricks, select_trick, use_trick, refresh_tricks
 from player_card import Player, Card            
 
-total_rolls = []
+
 
 def game_setup():
     """Initial set up for the game, establishing number and names of players,
@@ -23,7 +21,7 @@ def game_setup():
     Returns:
         player_list (list of player obj)
         
-    Author: Mackenzie Barrett
+    Author: Samuel Onakoya
     Technique: Key function
     """
     player_list = []
@@ -75,10 +73,13 @@ def turn(player_list):
         Modifies player attributes, prints to console, manages game state
         
     Returns:
-        None (exits when a player wins)
+        score_tracker (dict): Player names as keys with their completed card int
+            as the value
         
     Author: Noah Aurdos
+    Technique: f-strings containing expressions
     """
+    total_rolls = []
     
     active_tricks = ['chase', 'fetch', 'gobble', 'howl', 'roll over', 'trot']
     
@@ -93,16 +94,12 @@ def turn(player_list):
     'trot': "You may move 1 die on your dog cards to any other space, changing the number if needed. Then roll 2 dice."
     }
     
-    game_over = False
-    
     # Establish score tracking dict
     score_tracker = {}
     for player in player_list:
         score_tracker[player.name] = len(player.completed_cards)
     
-    # TODO CHANGE BACK TO 6; 2 IS FOR TESTING
-    while (max(score_tracker.values()) < 1):
-        print(max(score_tracker, key=lambda key: score_tracker[key]))
+    while True:
         for player in player_list:
             print(f"\n--- {player.name}'s Turn ---")
             print(f"Treats: {player.treats}")
@@ -123,37 +120,26 @@ def turn(player_list):
                 response = input(f"\nYou have {len(completable_cards)} card(s)"\
                     f"that can be completed. Complete them now? (yes/no): ")
                 if response.lower() in ['yes', 'y']:
+                    total_cards = (len(player.active_cards) + len(player.completed_cards))
                     for card in completable_cards:
                         player.completed_cards.append(card)
                         player.active_cards.remove(card)
                         print(f"Completed card: {card.name}")
-                        # Deal a card to replace the completed card
-                        player.active_cards.append(Card())
-                    
-                    # Break out of player turn loop if player completed 6 cards  # TODO RESET TO 6 AFTER TESTING  
-                    if len(player.completed_cards) == 1:
-                        print("Player has completed 6 cards")
-                        break
-                        
+                        # Deal player a replacement card if applicable
+                        if total_cards < 6:
+                            player.active_cards.append(Card())
+                    # Break out of player turn loop if player completed 6 cards  
+                    if len(player.completed_cards) >= 6:
+                        print(f"{player.name} has completed 6 cards")
+                        return score_tracker, total_rolls
+                    if not total_cards < 6:
+                        print(f"You already have {total_cards} cards so you may"\
+                            f" not have been dealt as many cards as you completed.")
                     print("Your updated active dog cards are:\n")
                     for card in player.active_cards:
                         print(f"{card}\n")
-                    
                     # End player turn
                     continue
-    
-                    # # Check if player has completed 6 cards
-                    # if len(player.completed_cards) == 6:
-                    #     # TODO TESTING GAME OVER
-                    #     print("GAME OVER TRIGGERED")
-                    #     game_over = True
-                    #     break
-                    # else:
-                    #     print("Your updated active dog cards are:\n")
-                    #     for card in player.active_cards:
-                    #         print(f"{card}\n")
-                    #     # End player's turn
-                    #     continue
             
             # Display available tricks
             print("\n" + "="*50)
@@ -216,43 +202,52 @@ def turn(player_list):
             if fulfilled_count == len(player.active_cards) and len(player.active_cards) > 0:
                 # If all of a player's dog cards are filled in one turn
                 # they are automatically completed and locked
+                total_cards = (len(player.active_cards) + len(player.completed_cards))
                 for card in player.active_cards[:]:
                     player.completed_cards.append(card)
                     player.active_cards.remove(card)
-                    # Deal a card to replace the completed card
-                    player.active_cards.append(Card())
+                    # Deal player a replacement card if applicable
+                    if total_cards < 6:
+                        player.active_cards.append(Card())
                 print("\nCongrats! You fulfilled all your dog cards this turn!")
-                # Check if player has completed 6 cards
-                # if len(player.completed_cards) == 6:
-                #     # TODO TESTING GAME OVER
-                #     print("GAME OVER TRIGGERED")
-                #     game_over = True
-                # if game_over == True:
-                #     break
+                # Check if player completed 6 cards
+                if len(player.completed_cards) >= 6:
+                    print(f"{player.name} has completed 6 cards")
+                    return score_tracker, total_rolls
+                if not total_cards < 6:
+                    print(f"You already have {total_cards} cards so you may"\
+                        f" not have been dealt as many cards as you completed.")
                 print("Your dog cards have been automatically marked as completed!")
                 print("\nYour updated active dog cards are:\n")
                 for card in player.active_cards:
                     print(f"{card}\n")
-                    
-            # Break out of player turn loop if player completed 6 cards  # TODO RESET TO 6 AFTER TESTING  
-            if len(player.completed_cards) == 1:
-                print("Player has completed 6 cards")
-                break
-                    
-        # Game over triggered by a break in the turn loop
-        # if game_over:
-        #     print(f"\n{'='*50}")
-        #     print(f"GAME OVER! {player.name} wins with 6 completed cards!")
-        #     print(f"{'='*50}")
-        #     break
-        # # TODO TESTING
-        # else:
-        #     print("TESTING GAME OVER FUNCTIONALITY IF STUCK IN LOOP SOMETHING IS WRONG")
-    print(f"{max(score_tracker, key=lambda key: score_tracker[key])} has won the game!")           
+      
+ 
+def game_end(score_tracker):
+    """Prints game winner message
+    
+    Args:
+        player (Player obj): provides Player attributes yard and active_cards which
+            provides Card class obj attributes
+    Side effects:
+        Prints message with player obj name atttribute of the winnerS
+    
+    Author: Samuel Onakoya
+    """
+    print(f"\n{'='*50}")     
+    print(f"{max(score_tracker, key=lambda key: score_tracker[key])} has won the game!")
+    print(f"{'='*50}")
                 
 def main():
+    """Calls other functions for complete game run through
+    
+    Author: Noah Aurdos
+    Technique: Sequence unpacking
+    """
     player_list = game_setup()
-    turn(player_list)
+    score_tracker, total_rolls = turn(player_list)
+    game_end(score_tracker)
     stats(total_rolls)
     
-main()
+if __name__ == "__main__":
+    main()

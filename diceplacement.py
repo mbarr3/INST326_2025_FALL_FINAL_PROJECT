@@ -11,17 +11,14 @@ def dice_placement(player, dice_list):
                                 placed automatically or by the player if more
                                 than one option is available
     Side effects:
-        Creates variables:
-            placement_dict (dict): dictionary containing the die values from the
-                                dice list as keys and possible placement locations
-                                as values
-            prompt_list (list of lists): die values that have more than one 
-                                        placement option
-            bury_dice (list of ints): list of die values determined to be placed
-                                    in the player's yard
+        Prints active dog cards message and card objs __str__ to the terminal
+        Prints player yard attribute to the terminal
+        Prints input to terminal asking which card or yard they would like to 
+            place the prompted die on
+        If input error prints error message to the terminal
         Updates the Card obj attributes req_dice and yard
     Returns:
-        bust_test (bool): True/False returned by bust function
+        bust_test (bool): True/False as returned by bust function
         
     Author: Mackenzie Barrett
     """

@@ -4,19 +4,29 @@ from player_card import Card
 
 def howl(player,total_rolls):
     """Function for the Howl trick
+    
         If player has less than 6 cards call the deal function which will add 
         another card to the player's dog cards. Then the player will roll one die.
     
     Arguments:
-        Player class object
+        player (Player obj): provides Player attributes yard and active_cards which
+            provides Card class obj attributes
+        total_rolls (list): list of all dice rolled throughout the game
     Side-effects:
-        Establishes a dice variable to save the value of the rolled die
-        Calls the dice placement function to place the rolled die
+        If applicable appends new card obj to player active cards list attribute
+            Prints player obj's card objs __str__ in player active cards list 
+                attribute 
+        If applicable prints info to player that they were not issues new card obj
+        Prints info message to player that they will roll 1 die
+        Prints rolled die 
+        If applicable, prints prompt to the terminal to spend a treat or not
+        If input error prints error message to the terminal
+        Updates player obj treat attribute if applicable
+        Adds rolled dice to total_rolls
     Returns:
-        bust_test (bool): True/False returned by bust function in dice placement
+        bust_test (bool): True or False as returned by the bust function
         
     Author: Samuel Onakoya
-    Technique: Conditional Expressions
     """
     total_cards = (len(player.active_cards) + len(player.completed_cards))
     
@@ -32,8 +42,6 @@ def howl(player,total_rolls):
     print("\n***~~~Now you roll one die~~~***")  
     while True:
         dice = roll(1)
-        total_rolls.extend(dice)
-        
         reroll = None
         
         if player.treats > 0:
@@ -52,6 +60,8 @@ def howl(player,total_rolls):
         if reroll == "y" or reroll == "yes":
             player.treats-=1
             continue
+        
+        total_rolls.extend(dice)
         
         bust_test = dice_placement(player, dice)
         return bust_test

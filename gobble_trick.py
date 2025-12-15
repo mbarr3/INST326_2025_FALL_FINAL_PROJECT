@@ -11,14 +11,12 @@ def gobble(player):
         player (Player obj): provides Player attributes yard and active_cards 
             which provides Card class obj attributes
     Side effects:
-        Establishes treat and blank_max variables to calculate how many treats
-            the player receives
+        Updates player obj treat attribute
+        Prints updated treats value message to the terminal
     Returns:
         False (bool): False for the sake of the bust test in the turn function
 
-    Author: Sean Tully 
-    Technique: f-strings containing expressions
-
+    Author: Sean Tully
     """
     treat = 7
     blank_max = 0

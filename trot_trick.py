@@ -12,18 +12,26 @@ def trot(player, total_rolls):
     Args: 
         player (Player obj): provides Player attributes yard and active_cards which
             provides Card class obj attributes
+        total_rolls (list): list of all dice rolled throughout the game
     Side effects:
         Prints the player's active cards to the terminal
         Prompts the player to input which card they would like to remove a die 
             from, which die to remove, which card to place the die on, and what
-            value to set the die to; these inputs are saved to variables
-        The dice_placement function is called 
-
+            value to set the die to
+            Skip input possible to skip this part
+        Updates card obj attributes accordingly
+        If applicable, prints input error message to terminal
+        Prints info message to player that they will roll 2 dice
+        Prints rolled die 
+        If applicable, prints prompt to the terminal to spend a treat or not
+        If input error prints error message to the terminal
+        Updates player obj treat attribute if applicable
+        Adds rolled dice to total_rolls
     Returns:
-        None
+        bust_test (bool): True or False as returned by the bust function
         
     Author: Samuel Onakoya
-    Technique: Desicion/Selection
+    Technique: Keyword arguments
     """
     
     while True:
@@ -79,8 +87,24 @@ def trot(player, total_rolls):
             return bust_test
 
     print("\n***~~~Now you roll two dice~~~***")
-    dice = rr(2)
-    total_rolls.extend(dice)
-    print(f"\nYour dice list is: {dice}")
-    bust_test = dp(player, dice)
-    return bust_test
+    while True:
+        dice = rr(rolls = 2)
+        reroll = None
+        print(f"\nYour rolled dice are: {dice}")
+        if player.treats > 0:
+                while True:
+                    reroll = input(f"You have {player.treats} treat(s). Would you like to spend "\
+                        f"a treat to reroll? (y/n) ").lower()
+                    if reroll not in ['yes', 'y', 'no', 'n']:
+                        print(f"{reroll} is not y or n")
+                        continue
+                    else:
+                        break
+                    
+        if reroll == "y" or reroll == "yes":
+                player.treats -= 1
+                continue
+        
+        total_rolls.extend(dice)
+        bust_test = dp(player, dice)
+        return bust_test

@@ -3,15 +3,16 @@ def bust (player):
     and yard when a player busts
 
     Args: 
-        player (Player obj): provides Player attributes yard and active_cards which
-            provides Card class obj attributes
+        player (Player obj): provides Player attributes yard and active_cards 
+            which provides Card class obj attributes
     Side effects:
-        Establishes total variable to calculate total value in a player's yard
+        If the player busted: sets the player.yard attribute to an empty list
+            Sets all values to False for every Card obj in player.active_cards
+            Prints a message to the terminal
     Returns:
         Bool: True if the player has busted; False if they player has not busted
 
     Author: Sean Tully
-    Technique: None
     """
     total = 0
     for die in player.yard:
