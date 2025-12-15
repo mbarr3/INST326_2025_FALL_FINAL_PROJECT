@@ -41,13 +41,13 @@ def rollover(player, total_rolls):
                     else:
                         break
             
-            # Update player yard
-            player.yard = list()
-            
             # Restart function if they want to spend a treat  
             if reroll == "y" or reroll == "yes":
                 player.treats-=1
                 continue
+            
+            # Update player yard
+            player.yard = list()
         
             bust_test = dice_placement(player, hold)
             if bust_test == True:

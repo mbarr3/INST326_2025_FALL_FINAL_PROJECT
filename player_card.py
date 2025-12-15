@@ -63,6 +63,8 @@ class Card:
                     "Coco", "Milo", "Cookie", "Buster", "Roxy", "Rex", "Jack",
                     "Archie", "Missy", "Lottie", "Poppy", "Honey", "Lady", 
                     "Ollie", "Diesel", "Duke", "Sadie"]
+        
+        # TODO NEED TO FIX PLAYER HAVING DOGS WITH SAME NAME
         self.name = random.choice(card_names)
         
         # Assign a random number of dice between 1 and 4 to the card and then
